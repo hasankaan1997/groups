@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Group Arrivals — Sheraton Milwaukee Brookfield</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+body {
+  font-family: 'Georgia', serif;
+  background: #f0ebe2;
+  color: #2c2820;
+  min-height: 100vh;
+}
+
+.shell {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 36px 24px 64px;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 18px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.eyebrow {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #8a7f6e;
+  margin-bottom: 5px;
+}
+h1 {
+  font-size: 20px;
+  font-weight: normal;
+  color: #2c2820;
+  letter-spacing: -.02em;
+}
+.meta {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  color: #a09080;
+  text-align: right;
+  line-height: 1.8;
+}
+
+/* ── Stats strip ── */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 8px;
+  margin-bottom: 22px;
+}
+.stat {
+  background: #e8e0d4;
+  border: 0.5px solid rgba(0,0,0,0.08);
+  border-radius: 7px;
+  padding: 11px 14px;
+}
+.stat-label {
+  font-family: 'Courier New', monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #8a7f6e;
+  margin-bottom: 5px;
+}
+.stat-val {
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 1;
+  color: #2c2820;
+}
+.stat-val.v-amber { color: #a05c10; }
+.stat-val.v-green  { color: #2a7a4a; }
+.stat-sub {
+  font-family: 'Courier New', monospace;
+  font-size: 9px;
+  color: #a09080;
+  margin-top: 3px;
+}
+
+/* ── Filter pills ── */
+.filters {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.pill {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 4px 13px;
+  border-radius: 20px;
+  cursor: pointer;
+  border: 0.5px solid rgba(0,0,0,0.15);
+  background: transparent;
+  color: #7a7060;
+  transition: all .12s;
+}
+.pill:hover { background: rgba(0,0,0,0.05); }
+.pill.active {
+  background: #2c2820;
+  color: #f0ebe2;
+  border-color: #2c2820;
+}
+
+/* ── Table ── */
+.tbl-wrap {
+  background: #ece5db;
+  border: 0.5px solid rgba(0,0,0,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+thead tr {
+  background: #e0d8cc;
+}
+th {
+  font-family: 'Courier New', monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #8a7f6e;
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: normal;
+  white-space: nowrap;
+  border-bottom: 0.5px solid rgba(0,0,0,0.08);
+}
+
+tbody tr {
+  border-bottom: 0.5px solid rgba(0,0,0,0.06);
+  transition: background .1s;
+}
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: rgba(0,0,0,0.03); }
+
+td {
+  padding: 9px 12px;
+  vertical-align: middle;
+  color: #2c2820;
+}
+
+/* ── Day group header row ── */
+.day-row td {
+  background: #e8e0d4;
+  font-family: 'Courier New', monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: #8a7f6e;
+  padding: 7px 12px;
+  border-bottom: 0.5px solid rgba(0,0,0,0.08);
+}
+
+/* ── Cell styles ── */
+.cell-org { font-size: 12px; color: #2c2820; }
+.cell-contact {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  color: #9a8f7e;
+  margin-top: 2px;
+}
+.cell-rooms {
+  font-size: 15px;
+  font-weight: normal;
+  color: #1a4a80;
+}
+.cell-roomtype {
+  font-family: 'Courier New', monospace;
+  font-size: 9px;
+  color: #9a8f7e;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+.cell-rate {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: #3c3428;
+  white-space: nowrap;
+}
+.cell-dates {
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  color: #6a6050;
+  white-space: nowrap;
+}
+
+/* ── Badges ── */
+.badge {
+  display: inline-block;
+  font-family: 'Courier New', monospace;
+  font-size: 9px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: .03em;
+  white-space: nowrap;
+}
+.b-indi {
+  background: rgba(0,0,0,0.06);
+  color: #7a7060;
+  border: 0.5px solid rgba(0,0,0,0.08);
+}
+.b-master {
+  background: #d8f0e4;
+  color: #1a6038;
+  border: 0.5px solid #7ecaa0;
+  font-weight: bold;
+}
+
+/* ── Tags / notes ── */
+.notes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+.note-tag {
+  font-family: 'Courier New', monospace;
+  font-size: 9px;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: rgba(0,0,0,0.05);
+  color: #7a7060;
+  border: 0.5px solid rgba(0,0,0,0.07);
+}
+.note-alert {
+  background: #faebd0;
+  color: #8a4808;
+  border-color: #d4943a;
+  font-weight: bold;
+}
+.note-check {
+  background: #fce8e8;
+  color: #8a2020;
+  border-color: #d48080;
+  font-weight: bold;
+}
+
+/* ── Left accent bar ── */
+.row-alert td:first-child {
+  box-shadow: inset 3px 0 0 #c8841a;
+}
+.row-master td:first-child {
+  box-shadow: inset 3px 0 0 #3a9e68;
+}
+
+/* ── Empty state ── */
+.empty-row td {
+  padding: 32px;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: #9a8f7e;
+  letter-spacing: .06em;
+}
+
+/* ── Footer ── */
+.footer {
+  margin-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 9px;
+  color: #a09080;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <div class="header">
+    <div>
+      <div class="eyebrow">Sheraton Milwaukee Brookfield · Front Desk Reference</div>
+      <h1>Incoming Groups — April 2026</h1>
+    </div>
+    <div class="meta">
+      Updated: Apr 16, 2026<br>
+      Confidential · Internal Use Only
+    </div>
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="filters">
+    <button class="pill active" onclick="filter('all',this)">All dates</button>
+    <button class="pill" onclick="filter(14,this)">Apr 14</button>
+    <button class="pill" onclick="filter(15,this)">Apr 15</button>
+    <button class="pill" onclick="filter(16,this)">Apr 16</button>
+    <button class="pill" onclick="filter(17,this)">Apr 17</button>
+    <button class="pill" onclick="filter(18,this)">Apr 18</button>
+    <button class="pill" onclick="filter(20,this)">Apr 20</button>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Organization</th>
+          <th>Arrival → Dep.</th>
+          <th>Rooms</th>
+          <th>Rate</th>
+          <th>Billing</th>
+          <th>Notes & Alerts</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <span>Sheraton Milwaukee Brookfield · 375 S Moorland Rd, Brookfield WI 53005</span>
+    <span>Not for external distribution</span>
+  </div>
+
+</div>
+
+<script>
+const groups=[
+  {org:"Herzing University",contact:"Angela Merrill",arr:14,dep:17,rooms:108,rtype:"Trad. 2 Queens",rate:"$99",billing:"Individual",notes:["Breakfast incl.","Airport shuttle","Nursing students"],alert:null,check:false,master:false},
+  {org:"WELS Annual Gathering",contact:"Diane Scherzberg",arr:14,dep:15,rooms:8,rtype:"Trad. 1 King",rate:"$94",billing:"Individual",notes:["IPO breakfast buffet","Wed shuttle to CMM","Onsite dinner"],alert:"Rate TBD — check w/ Marci",check:false,master:false},
+  {org:"PT Going Down Swinging",contact:"Dave Oakes",arr:16,dep:18,rooms:65,rtype:"2 Doubles + 1 King Dlx",rate:"$109",billing:"Individual",notes:["Breakfast incl.","No cancellation","No attrition"],alert:"Peak 55 attendees",check:false,master:false},
+  {org:"Windy City Classic 2026",contact:"Aimee Roberts",arr:16,dep:19,rooms:205,rtype:"Club Level 2 Queens",rate:"$124",billing:"Individual",notes:["Stay-to-play","Book inside block only"],alert:null,check:false,master:false},
+  {org:"Phillips / Kraus Wedding",contact:"Kate Phillips",arr:16,dep:17,rooms:15,rtype:"Trad. 2 Queens",rate:"$124",billing:"Individual",notes:["MKESI wedding account"],alert:null,check:false,master:false},
+  {org:"WSC Summer Grand SLAM",contact:"Sean Kelly",arr:17,dep:19,rooms:28,rtype:"Trad. 2 Queens",rate:"$145",billing:"Individual",notes:["Breakfast incl.","$10 room rebate","2x Bonvoy pts/dollar"],alert:null,check:false,master:false},
+  {org:"Purple Aces — Baseball",contact:"Andrew Godin",arr:17,dep:19,rooms:60,rtype:"Trad. 2 Queens",rate:"$124",billing:"Individual",notes:["Breakfast incl.","New Berlin tournament"],alert:"Peak 60 attendees",check:false,master:false},
+  {org:"Kingsford HS — Baseball",contact:"Dan Brown",arr:17,dep:18,rooms:18,rtype:"2 Queens + 2 Doubles",rate:"$124",billing:"Individual",notes:["Breakfast incl.","Individual reservations"],alert:null,check:false,master:false},
+  {org:"Lakeshore First Robotics",contact:"Traci Menden",arr:17,dep:19,rooms:60,rtype:"2 Queens + 1 King Dlx",rate:"$99",billing:"Master Bill",notes:["Breakfast incl.","Craft room 6 AM","Rooming list req."],alert:null,check:false,master:true},
+  {org:"Wisconsin Ice 15 — Volleyball",contact:"April Myers",arr:17,dep:19,rooms:60,rtype:"2Q + 1Kng Dlx + Club Kng",rate:"$104",billing:"Individual",notes:["Breakfast incl.","Volleyball group"],alert:null,check:false,master:false},
+  {org:"SLAM Con APR26",contact:"Dan Lenz",arr:18,dep:20,rooms:10,rtype:"Trad. 1 King",rate:"$109",billing:"Individual",notes:["100 tables/booth needed","Verify table setup!"],alert:"Peak 500 — table layout critical",check:false,master:false},
+  {org:"Kickoff for the Kids",contact:"Maddie Zimmerman",arr:20,dep:21,rooms:10,rtype:"Trad. 1 King",rate:"$119",billing:"Individual",notes:["20% off A/V","Compl. parking","VIP Club access"],alert:"CHECK only — no CC on file",check:true,master:false},
+];
+
+let cur='all';
+
+function filtered(){
+  return cur==='all'?groups:groups.filter(g=>g.arr===cur);
+}
+
+function renderStats(list){
+  const total=list.reduce((s,g)=>s+g.rooms,0);
+  const alerts=list.filter(g=>g.alert).length;
+  const masters=list.filter(g=>g.master).length;
+  document.getElementById('stats').innerHTML=`
+    <div class="stat"><div class="stat-label">Groups</div><div class="stat-val">${list.length}</div><div class="stat-sub">in view</div></div>
+    <div class="stat"><div class="stat-label">Total rooms</div><div class="stat-val">${total.toLocaleString()}</div><div class="stat-sub">contracted</div></div>
+    <div class="stat"><div class="stat-label">Alerts</div><div class="stat-val ${alerts?'v-amber':''}">${alerts}</div><div class="stat-sub">need attention</div></div>
+    <div class="stat"><div class="stat-label">Master bill</div><div class="stat-val ${masters?'v-green':''}">${masters}</div><div class="stat-sub">group${masters!==1?'s':''}</div></div>
+  `;
+}
+
+function renderTable(list){
+  const tb=document.getElementById('tbody');
+  if(!list.length){
+    tb.innerHTML='<tr class="empty-row"><td colspan="6">No groups for this date</td></tr>';
+    return;
+  }
+  const byDay={};
+  list.forEach(g=>{(byDay[g.arr]=byDay[g.arr]||[]).push(g);});
+  const days=Object.keys(byDay).sort((a,b)=>a-b);
+  const dayNames=['','Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const dayOfWeek={14:'Tuesday',15:'Wednesday',16:'Thursday',17:'Friday',18:'Saturday',19:'Sunday',20:'Monday'};
+
+  tb.innerHTML=days.map(d=>`
+    ${cur==='all'?`<tr class="day-row"><td colspan="6">Apr ${d} &nbsp;·&nbsp; ${dayOfWeek[d]||''}</td></tr>`:''}
+    ${byDay[d].map(g=>`
+      <tr class="${g.alert&&!g.master?'row-alert':''} ${g.master?'row-master':''}">
+        <td>
+          <div class="cell-org">${g.org}</div>
+          <div class="cell-contact">${g.contact}</div>
+        </td>
+        <td class="cell-dates">Apr ${g.arr} → Apr ${g.dep}</td>
+        <td>
+          <div class="cell-rooms">${g.rooms}</div>
+          <div class="cell-roomtype">${g.rtype}</div>
+        </td>
+        <td class="cell-rate">${g.rate}/nt</td>
+        <td><span class="badge ${g.master?'b-master':'b-indi'}">${g.billing}</span></td>
+        <td>
+          <div class="notes">
+            ${g.alert?`<span class="note-tag ${g.check?'note-check':'note-alert'}">${g.alert}</span>`:''}
+            ${g.notes.map(n=>`<span class="note-tag">${n}</span>`).join('')}
+          </div>
+        </td>
+      </tr>
+    `).join('')}
+  `).join('');
+}
+
+function filter(d,el){
+  cur=d;
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  const list=filtered();
+  renderStats(list);
+  renderTable(list);
+}
+
+const all=filtered();
+renderStats(all);
+renderTable(all);
+</script>
+</body>
+</html>
