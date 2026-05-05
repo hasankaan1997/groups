@@ -7,7 +7,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Georgia',serif;background:#f0ebe2;color:#2c2820;min-height:100vh}
-.shell{max-width:960px;margin:0 auto;padding:36px 24px 64px}
+.shell{max-width:980px;margin:0 auto;padding:36px 24px 64px}
 .header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-bottom:18px;margin-bottom:24px;border-bottom:1px solid rgba(0,0,0,0.1)}
 .eyebrow{font-family:'Courier New',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8a7f6e;margin-bottom:5px}
 h1{font-size:20px;font-weight:normal;color:#2c2820;letter-spacing:-.02em}
@@ -44,7 +44,6 @@ td{padding:9px 12px;vertical-align:middle;color:#2c2820}
 .notes{display:flex;flex-wrap:wrap;gap:3px}
 .note-tag{font-family:'Courier New',monospace;font-size:9px;padding:1px 6px;border-radius:3px;background:rgba(0,0,0,0.05);color:#7a7060;border:0.5px solid rgba(0,0,0,0.07)}
 .note-alert{background:#faebd0;color:#8a4808;border-color:#d4943a;font-weight:bold}
-.note-check{background:#fce8e8;color:#8a2020;border-color:#d48080;font-weight:bold}
 .row-alert td:first-child{box-shadow:inset 3px 0 0 #c8841a}
 .row-master td:first-child{box-shadow:inset 3px 0 0 #3a9e68}
 .empty-row td{padding:32px;text-align:center;font-family:'Courier New',monospace;font-size:11px;color:#9a8f7e;letter-spacing:.06em}
@@ -58,20 +57,12 @@ td{padding:9px 12px;vertical-align:middle;color:#2c2820}
       <div class="eyebrow">Sheraton Milwaukee Brookfield · Front Desk Reference</div>
       <h1>Incoming Groups — May 2026</h1>
     </div>
-    <div class="meta">Updated: Apr 29, 2026<br>Confidential · Internal Use Only</div>
+    <div class="meta">Updated: May 5, 2026<br>Confidential · Internal Use Only</div>
   </div>
 
   <div class="stats" id="stats"></div>
 
-  <div class="filters">
-    <button class="pill active" onclick="filter('all',this)">All dates</button>
-    <button class="pill" onclick="filter(1,this)">May 1</button>
-    <button class="pill" onclick="filter(7,this)">May 7</button>
-    <button class="pill" onclick="filter(8,this)">May 8</button>
-    <button class="pill" onclick="filter(9,this)">May 9</button>
-    <button class="pill" onclick="filter(11,this)">May 11</button>
-    <button class="pill" onclick="filter(12,this)">May 12</button>
-  </div>
+  <div class="filters" id="filter-bar"></div>
 
   <div class="tbl-wrap">
     <table>
@@ -96,121 +87,61 @@ td{padding:9px 12px;vertical-align:middle;color:#2c2820}
 </div>
 
 <script>
-const dayOfWeek={1:'Friday',2:'Saturday',3:'Sunday',7:'Thursday',8:'Friday',9:'Saturday',10:'Sunday',11:'Monday',12:'Tuesday',13:'Wednesday',14:'Thursday',15:'Friday',16:'Saturday'};
+const dow={1:'Friday',2:'Saturday',3:'Sunday',4:'Monday',5:'Tuesday',6:'Wednesday',7:'Thursday',8:'Friday',9:'Saturday',10:'Sunday',11:'Monday',12:'Tuesday',13:'Wednesday',14:'Thursday',15:'Friday',16:'Saturday',17:'Sunday',18:'Monday',19:'Tuesday',20:'Wednesday',21:'Thursday',22:'Friday'};
 
 const groups=[
-  {
-    org:"Titans 17U — Basketball",
-    contact:"Heather Spencer",
-    arr:1,dep:3,rooms:24,
-    rtype:"Trad. 2 Queens",
-    rate:"$104",billing:"Individual",
-    notes:["Breakfast incl.","Basketball OAW New Berlin","Individual pay own"],
-    alert:null,check:false,master:false
-  },
-  {
-    org:"BMIMC / Pro Dance Elite",
-    contact:"Aileen Carlos",
-    arr:1,dep:3,rooms:40,
-    rtype:"Trad. 2 Doubles",
-    rate:"$124",billing:"Individual",
-    notes:["Breakfast incl.","Dance group New Berlin","Individual reservations"],
-    alert:null,check:false,master:false
-  },
-  {
-    org:"Ernst & Young — ETS Baseball",
-    contact:"Joe McCarney",
-    arr:1,dep:3,rooms:38,
-    rtype:"Trad. 2 Queens",
-    rate:"$105",billing:"Individual",
-    notes:["Breakfast incl.","Baseball New Berlin","Individual reservations"],
-    alert:"Peak 45 attendees",check:false,master:false
-  },
-  {
-    org:"The Powers Company",
-    contact:"Alejandra Gonzalez-Hernandez",
-    arr:1,dep:31,rooms:105,
-    rtype:"Trad. 1 King",
-    rate:"$104",billing:"Individual",
-    notes:["20-week project","IPO courtesy block","Rooming list","Arthur Travel intermediary"],
-    alert:"Long-term block May 1–31 · 5 rooms/night",check:false,master:false
-  },
-  {
-    org:"Bob Rogers Travel — Joliet D86",
-    contact:"Jessica Sanabria",
-    arr:7,dep:9,rooms:28,
-    rtype:"1 King + 2 Doubles (Quad occ.)",
-    rate:"$124",billing:"Master Bill",
-    notes:["All charges to master","Rooming list","No posting / pre-key","Comp. breakfast in private banquet space","Card down for incidentals"],
-    alert:"MASTER BILL — no posting to rooms",check:false,master:true
-  },
-  {
-    org:"Ponds of Brookfield — Minnesota Wilderness",
-    contact:"Greg Copeland",
-    arr:7,dep:9,rooms:34,
-    rtype:"Trad. 2 Queens",
-    rate:"$50",billing:"Master Bill",
-    notes:["Direct billed","Early check-in Thu 1 PM","Late check-out Sat 5 PM","Bus arrival — pre-key","Meeting room Moorland 5","Breakfast incl."],
-    alert:"Early CI / Late CO · $50 rate · Bus group",check:false,master:true
-  },
-  {
-    org:"Michigan Hawks Soccer Club",
-    contact:"Michelle Creger",
-    arr:8,dep:11,rooms:62,
-    rtype:"Trad. 2 Doubles",
-    rate:"$119",billing:"Individual",
-    notes:["BBK 1/40 comp","Breakfast incl.","Comp parking","Individual reservations"],
-    alert:null,check:false,master:false
-  },
-  {
-    org:"MKESI Sports — Michigan Stars FC",
-    contact:"Kristina Turchi",
-    arr:8,dep:10,rooms:60,
-    rtype:"Trad. 2 Queens",
-    rate:"$109",billing:"Individual",
-    notes:["Sports team","Individual pay own","Breakfast incl."],
-    alert:null,check:false,master:false
-  },
-  {
-    org:"Badger Color Concentrates",
-    contact:"Mark Zolty",
-    arr:9,dep:16,rooms:70,
-    rtype:"Trad. 1 King",
-    rate:"$135",billing:"Individual",
-    notes:["Rooming list","BT rate + Club Level","Club lounge — good service req.","Moldy berry issue noted"],
-    alert:"Club lounge service alert",check:false,master:false
-  },
-  {
-    org:"Eaton Corporation — Voltage Training",
-    contact:"John Thierfelder",
-    arr:11,dep:14,rooms:45,
-    rtype:"Trad. 1 King",
-    rate:"$124",billing:"Individual",
-    notes:["Repeat client","Rooming list","Airport shuttle needed","May add more rooms"],
-    alert:"Airport shuttle required",check:false,master:false
-  },
-  {
-    org:"Dixon Sanitary — Bi-Annual",
-    contact:"Erin Mazer",
-    arr:12,dep:14,rooms:20,
-    rtype:"Trad. 1 King",
-    rate:"$149",billing:"Master Bill",
-    notes:["Room & tax to master","Rooming list","Craft room happy hour possible","New contact: Erin Mazer"],
-    alert:null,check:false,master:true
-  },
-  {
-    org:"LaSaffre Yeast Corporation",
-    contact:"Sandra Kuehn",
-    arr:12,dep:15,rooms:45,
-    rtype:"Trad. 1 King",
-    rate:"$135",billing:"Individual",
-    notes:["No breakfast","No onsite meetings","Individual reservations"],
-    alert:null,check:false,master:false
-  },
+  // May 1
+  {org:"Auer Steel — Sales Club",contact:"Tina Seibold",arr:4,dep:5,rooms:5,rtype:"Trad. 1 King",rate:"$104",billing:"Master Bill",notes:["Room & tax to master","Rooming list","Room ready by 8 AM","Exec. board buffet 11 AM (50 PPL)","Iced tea/lemonade 11 AM","No bottled water","Granola bars 1 PM","F&B min $1,650"],alert:"MASTER BILL · Room ready 8 AM · F&B setup critical",master:true},
+  // May 5
+  {org:"Shine Early Learning",contact:"Jessica Espinosa",arr:5,dep:8,rooms:85,rtype:"Club Level 1 King + Trad. 1 King",rate:"$106",billing:"Master Bill",notes:["Room & tax to master","Rooming list","State per diem","2 Lunches incl. Breakfast 1 To Go Break"],alert:"MASTER BILL — 75 peak attendees",master:true},
+  // May 7
+  {org:"Bob Rogers Travel — Joliet D86",contact:"Jessica Sanabria",arr:7,dep:9,rooms:28,rtype:"Trad. 1 King + 2 Doubles (Quad occ.)",rate:"$124",billing:"Master Bill",notes:["All charges to master","Rooming list","No posting / no pre-key","Card down for incidentals","Comp. breakfast in private banquet space"],alert:"MASTER BILL — no posting to rooms",master:true},
+  {org:"Ponds of Brookfield — Minnesota Wilderness",contact:"Greg Copeland",arr:7,dep:9,rooms:34,rtype:"Trad. 2 Queens",rate:"$50",billing:"Master Bill",notes:["All charges to master","Early CI Thu 1 PM","Late CO Sat 5 PM","Arriving by bus — pre-key","Meeting room Moorland 5","Breakfast incl."],alert:"$50 rate · Early CI / Late CO · Bus arrival · Pre-key",master:true},
+  // May 8
+  {org:"Michigan Hawks Soccer Club",contact:"Michelle Creger",arr:8,dep:11,rooms:62,rtype:"Trad. 2 Doubles + Trad. 2 Queens",rate:"$119",billing:"Individual",notes:["BBK 1/40 comp","Breakfast incl.","Comp parking","Individual reservations"],alert:null,master:false},
+  {org:"MKESI Sports — Michigan Stars FC",contact:"Kristina Turchi",arr:8,dep:10,rooms:60,rtype:"Trad. 2 Queens",rate:"$109",billing:"Individual",notes:["Sports team","Breakfast incl.","Individual pay own"],alert:null,master:false},
+  // May 9
+  {org:"Badger Color Concentrates",contact:"Mark Zolty",arr:9,dep:16,rooms:70,rtype:"Trad. 1 King",rate:"$135",billing:"Individual",notes:["Rooming list","BT rate + Club Level","Club lounge service req.","Moldy berry issue noted"],alert:"Club lounge service alert — peak 30",master:false},
+  // May 11
+  {org:"Eaton Corporation — Voltage Training",contact:"John Thierfelder",arr:11,dep:14,rooms:45,rtype:"Trad. 1 King",rate:"$124",billing:"Individual",notes:["Repeat client","Rooming list","Airport shuttle needed","May add more rooms","IPO courtesy block"],alert:"Airport shuttle required",master:false},
+  // May 12
+  {org:"Dixon Sanitary — Bi-Annual",contact:"Erin Mazer",arr:12,dep:14,rooms:20,rtype:"Trad. 1 King",rate:"$149",billing:"Master Bill",notes:["Room & tax to master","Rooming list","Craft room happy hour possible","New contact: Erin Mazer"],alert:null,master:true},
+  {org:"LaSaffre Yeast Corporation",contact:"Sandra Kuehn",arr:12,dep:15,rooms:45,rtype:"Trad. 1 King",rate:"$135",billing:"Individual",notes:["No breakfast","No onsite meetings","Rooming list"],alert:null,master:false},
+  {org:"WMC — American Economic Interest Summit",contact:"Katelyn Acker",arr:12,dep:13,rooms:25,rtype:"Trad. 1 King",rate:"$119",billing:"Individual",notes:["Direct bill banquets","$10,000 F&B min","Individual call-in"],alert:"$10K F&B minimum",master:false},
+  // May 13
+  {org:"Wisconsin Dept. of Corrections — Juvenile Superintendent Conf.",contact:"Alysha Clark",arr:13,dep:16,rooms:60,rtype:"Trad. 1 King + Trad. 2 Doubles",rate:"$106",billing:"Individual",notes:["Per diem pricing","Tax exempt — verify at CI","State per diem menu","Meeting space — Milwaukee if avail"],alert:"Tax exempt · Verify at check-in · Peak 40",master:false},
+  // May 14
+  {org:"MKESI Wedding — Diedrick + Buchmeyer",contact:"Anna Buchmeyer",arr:14,dep:16,rooms:20,rtype:"Trad. 1 King + Dlx 1 King + Trad. 2 Queens",rate:"$119",billing:"Individual",notes:["Breakfast incl.","Same wing requested","Individual reservations"],alert:null,master:false},
+  {org:"ROC Ventures — Winnipeg May",contact:"Andrew Carr",arr:14,dep:17,rooms:54,rtype:"Trad. 1 King + Trad. 2 Doubles",rate:"$79",billing:"Master Bill",notes:["All charges to master","Rooming list","Breakfast incl.","Room & tax paid by Milkmen"],alert:"MASTER BILL · $79 rate · Peak 36",master:true},
+  {org:"USMF — Marine Forces Marriage Enrichment",contact:"Dana Baker",arr:14,dep:17,rooms:44,rtype:"Trad. 2 Queens",rate:"$110",billing:"Master Bill",notes:["Room & tax to master","Rooming list","$33 vouchers for restaurant Sat night","Per diem menu pricing","LCD projector + screen + 2 flip charts incl.","Comp. coffee refresh AM/PM Sat & Sun"],alert:"MASTER BILL · Restaurant vouchers Sat",master:true},
+  {org:"Lifeonaire Group — Epic May",contact:"Stephen Cook",arr:14,dep:18,rooms:78,rtype:"Trad. 1 King + Trad. 2 Doubles + Dlx 1 King + Club Level 1 King",rate:"$119",billing:"Individual",notes:["Breakfast incl.","Individual pay own","Lunch on own each day"],alert:"Peak 35 · Multi room types",master:false},
+  // May 15
+  {org:"Huntley Red Raiders — Softball",contact:"Nancy Kalush",arr:15,dep:17,rooms:22,rtype:"Trad. 2 Queens",rate:"$114",billing:"Individual",notes:["Breakfast incl.","Individual call-in","West Allis tournament"],alert:null,master:false},
+  {org:"Spooky Frog Events — Book Fair",contact:"Samantha Loehe",arr:15,dep:16,rooms:10,rtype:"Trad. 1 King",rate:"$129",billing:"Individual",notes:["No room rental","Individual reservations","400 peak attendees"],alert:"Peak 400 — large external event",master:false},
+  {org:"NY2LA Sports — Spring Extravaganza",contact:"Lesley Curro",arr:15,dep:17,rooms:50,rtype:"Trad. 2 Doubles",rate:"$124",billing:"Individual",notes:["Breakfast incl.","Rooming list","Individual pay own","Homestead tournament"],alert:null,master:false},
+  {org:"Biofield Testing May",contact:"Libby Atkins",arr:15,dep:18,rooms:26,rtype:"Trad. 1 King",rate:"$129",billing:"Individual",notes:["Repeat client","No A/V","Pre-order menu","Individual reservations"],alert:null,master:false},
+  // May 16
+  {org:"Athlete Travel — ECNL Germantown MKESI",contact:"Isabel Lewis",arr:16,dep:17,rooms:20,rtype:"Trad. 2 Doubles",rate:"$114",billing:"Individual",notes:["Breakfast incl.","Rooming list","Individual pay own"],alert:null,master:false},
+  // May 17
+  {org:"Herzing University 7",contact:"Angela Merrill",arr:17,dep:22,rooms:144,rtype:"Trad. 1 King",rate:"$99",billing:"Individual",notes:["Breakfast incl.","Airport shuttle to/from Herzing","Nursing students training","Individual reservations"],alert:"Large block — 144 rooms · Shuttle req.",master:false},
+  {org:"ROC Ventures — Gary May",contact:"Andrew Carr",arr:17,dep:20,rooms:54,rtype:"Trad. 1 King + Trad. 2 Doubles",rate:"$79",billing:"Master Bill",notes:["All charges to master","Rooming list","Breakfast incl.","Room & tax paid by Milkmen"],alert:"MASTER BILL · $79 rate · Peak 36",master:true},
+  {org:"GE Healthcare — GEHC OMLP Intern Onboarding",contact:"Joe Mannino",arr:17,dep:21,rooms:36,rtype:"Trad. 2 Queens + Trad. 2 Doubles",rate:"$90",billing:"Individual",notes:["Breakfast incl. in rate","Shuttle transportation needed","Individual reservations"],alert:"Shuttle required — confirm w/ GE",master:false},
+  {org:"WELS Campus Ministry CMC",contact:"Ginny Mundstock",arr:17,dep:20,rooms:47,rtype:"Trad. 1 King + Trad. 2 Queens",rate:"$94",billing:"Master Bill",notes:["Room & tax to master","Rooming list","Breakfast buffet incl.","2 drink tickets per person incl."],alert:"MASTER BILL",master:true},
 ];
 
+const arrDays=[...new Set(groups.map(g=>g.arr))].sort((a,b)=>a-b);
 let cur='all';
+
 function filtered(){return cur==='all'?groups:groups.filter(g=>g.arr===cur);}
+
+function renderFilters(){
+  const bar=document.getElementById('filter-bar');
+  let html=`<button class="pill active" onclick="filter('all',this)">All dates</button>`;
+  arrDays.forEach(d=>{
+    html+=`<button class="pill" onclick="filter(${d},this)">May ${d}</button>`;
+  });
+  bar.innerHTML=html;
+}
 
 function renderStats(list){
   const total=list.reduce((s,g)=>s+g.rooms,0);
@@ -231,7 +162,7 @@ function renderTable(list){
   list.forEach(g=>{(byDay[g.arr]=byDay[g.arr]||[]).push(g);});
   const days=Object.keys(byDay).sort((a,b)=>a-b);
   tb.innerHTML=days.map(d=>`
-    ${cur==='all'?`<tr class="day-row"><td colspan="6">May ${d} &nbsp;·&nbsp; ${dayOfWeek[d]||''}</td></tr>`:''}
+    ${cur==='all'?`<tr class="day-row"><td colspan="6">May ${d} &nbsp;·&nbsp; ${dow[d]||''}</td></tr>`:''}
     ${byDay[d].map(g=>`
       <tr class="${g.alert&&!g.master?'row-alert':''} ${g.master?'row-master':''}">
         <td><div class="cell-org">${g.org}</div><div class="cell-contact">${g.contact}</div></td>
@@ -241,7 +172,7 @@ function renderTable(list){
         <td><span class="badge ${g.master?'b-master':'b-indi'}">${g.billing}</span></td>
         <td>
           <div class="notes">
-            ${g.alert?`<span class="note-tag ${g.check?'note-check':'note-alert'}">${g.alert}</span>`:''}
+            ${g.alert?`<span class="note-tag note-alert">${g.alert}</span>`:''}
             ${g.notes.map(n=>`<span class="note-tag">${n}</span>`).join('')}
           </div>
         </td>
@@ -259,6 +190,7 @@ function filter(d,el){
   renderTable(list);
 }
 
+renderFilters();
 renderStats(filtered());
 renderTable(filtered());
 </script>
