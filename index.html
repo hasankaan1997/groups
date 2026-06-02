@@ -55,9 +55,9 @@ td{padding:9px 12px;vertical-align:middle;color:#2c2820}
   <div class="header">
     <div>
       <div class="eyebrow">Sheraton Milwaukee Brookfield · Front Desk Reference</div>
-      <h1>Incoming Groups — May 26 – Jun 9, 2026</h1>
+      <h1>Incoming Groups — Jun 2 – Jun 16, 2026</h1>
     </div>
-    <div class="meta">Updated: May 26, 2026<br>Confidential · Internal Use Only</div>
+    <div class="meta">Updated: Jun 2, 2026<br>Confidential · Internal Use Only</div>
   </div>
   <div class="stats" id="stats"></div>
   <div class="filters" id="filter-bar"></div>
@@ -78,34 +78,42 @@ td{padding:9px 12px;vertical-align:middle;color:#2c2820}
 </div>
 <script>
 const dowLabel={
-  526:'Mon May 26',527:'Tue May 27',528:'Wed May 28',529:'Thu May 29',530:'Fri May 30',531:'Sat May 31',
-  601:'Sun Jun 1',602:'Mon Jun 2',603:'Tue Jun 3',604:'Wed Jun 4',605:'Thu Jun 5',606:'Fri Jun 6',
-  607:'Sat Jun 7',608:'Sun Jun 8',609:'Mon Jun 9'
+  602:'Tue Jun 2',603:'Wed Jun 3',604:'Thu Jun 4',605:'Fri Jun 5',606:'Sat Jun 6',
+  607:'Sun Jun 7',608:'Mon Jun 8',609:'Tue Jun 9',610:'Wed Jun 10',611:'Thu Jun 11',
+  612:'Fri Jun 12',613:'Sat Jun 13',614:'Sun Jun 14',615:'Mon Jun 15',616:'Tue Jun 16'
 };
 
 const groups=[
   // ── IN-HOUSE carry-overs ──
-  {org:"WELS Ministry of Christian Giving — Summer Conf.",contact:"Karen Martinez",arr:526,dep:529,rooms:36,rtype:"Trad. 1 King",rate:"$94",billing:"Individual",notes:["Breakfast + 2 drink tickets incl.","Individual reservations","Rooms Only","Peak 10","IN-HOUSE · Departs May 29"],alert:"IN-HOUSE · Departs May 29",master:false},
-  {org:"EventConnect: Prep Hoops — WI State Basketball",contact:"Event Connect",arr:528,dep:531,rooms:190,rtype:"Trad. 2 Doubles + Trad. 2 Queens",rate:"$139",billing:"Individual",notes:["Rooming list","$11 rebate + 7% commission","Breakfast incl.","Peak 95","IN-HOUSE · Departs May 31"],alert:"190 rooms · IN-HOUSE · Departs May 31",master:false},
-  {org:"Lifeonaire #2 May 2026",contact:"Tim Davis",arr:528,dep:531,rooms:30,rtype:"Trad. 1 King",rate:"$119",billing:"Individual",notes:["Breakfast incl.","Individual reservations","No F&B needed","IN-HOUSE · Departs May 31"],alert:null,master:false},
-  {org:"Wisconsin Legends Black 12U — Basketball",contact:"Steve Bohman",arr:529,dep:531,rooms:20,rtype:"Trad. 2 Queens",rate:"$105",billing:"Individual",notes:["Breakfast incl.","Individual call-in","Basketball group","IN-HOUSE · Departs May 31"],alert:null,master:false},
-  {org:"Munim Wedding — Outside Catering MAY'26",contact:"Shahida Munim",arr:530,dep:531,rooms:10,rtype:"Trad. 2 Queens",rate:"$149",billing:"Individual",notes:["Outside catering — Anmol Restaurant","6 hrs rental comp · Extra $500/hr","$30/person","Peak 330","IN-HOUSE · Departs May 31"],alert:"Peak 330 · Outside catering · IN-HOUSE",master:false},
-  {org:"Sherry's Birthday Celebration (MKESI Social)",contact:"Sherry Fourston-Berry",arr:530,dep:531,rooms:5,rtype:"Trad. 2 Queens",rate:"$164",billing:"Individual",notes:["70's theme","Cash bar","Breakfast incl. in rate","Setup changed 2pm→Noon","$250+ rental","IN-HOUSE · Departs May 31"],alert:"Setup change · $250+ rental · IN-HOUSE",master:false},
-  {org:"Herzing University 9",contact:"Angela Merrill",arr:531,dep:604,rooms:144,rtype:"Trad. 1 King",rate:"$99",billing:"Individual",notes:["Breakfast incl.","Airport shuttle req.","Pre-arranged transport to/from Herzing","Nursing students","IN-HOUSE · Departs Jun 4"],alert:"144 rooms · Shuttle required · IN-HOUSE",master:false},
-  {org:"GE Precision Healthcare — Vivid Technology Course",contact:"Tarolyn Fulkerson",arr:602,dep:605,rooms:41,rtype:"Trad. 1 King",rate:"$109",billing:"Master Bill",notes:["Room & tax to master","Rooming list","Club Lounge / Breakfast incl.","Shuttle to HCI + Airport req.","Peak 25"],alert:"MASTER BILL · Shuttle required",master:true},
+  {org:"The Grant Group — 2026 Bananas World Tour",contact:"Kevin Alexander / Shyla Hamilton",arr:604,dep:608,rooms:540,rtype:"Multiple room types",rate:"$189",billing:"Master Bill",notes:["All charges to master","Rooming list","Breakfast incl.","1 comp per 25 rooms","2 suite upgrades if avail.","Water 2x per room/day","Comp meeting space","10% commission","IN-HOUSE · Departs Jun 8"],alert:"MASTER BILL · 540 rooms · IN-HOUSE · Peak 468",master:true},
+  {org:"ROC Ventures — Fargo vs Milkmen June",contact:"Andrew Carr",arr:604,dep:607,rooms:54,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$79",billing:"Master Bill",notes:["All charges to master","Rooming list","Breakfast incl.","Room & tax paid by Milkmen","IN-HOUSE · Departs Jun 7"],alert:"MASTER BILL · $79 rate · IN-HOUSE",master:true},
+  {org:"Most Worshipful Prince Hall Grand Lodge of WI",contact:"Micah Tharpe",arr:606,dep:611,rooms:140,rtype:"Trad. 1K + Club 2Q + Suite 1K + Trad. 2Dbl + Trad. 2Q + Dlx 1K",rate:"$129–$199",billing:"Individual",notes:["Individual reservations","Suite RM 247 for Tharpe","$5 rebate per actualized room","15% disc. A/V via KVL","2 Bonvoy pts per $ to planner","Free parking","IN-HOUSE · Peak 225"],alert:"140 rooms · Suite for organizer · Rebate tracking req.",master:false},
+  {org:"Herzing University 10",contact:"Angela Merrill",arr:607,dep:611,rooms:144,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$99",billing:"Individual",notes:["Breakfast incl.","Airport shuttle req.","Pre-arranged transport","Nursing students","IN-HOUSE · Departs Jun 11"],alert:"144 rooms · Shuttle required · IN-HOUSE",master:false},
+  {org:"WELS Theology Writers — Elementary JUN26",contact:"Sarah Krause",arr:607,dep:617,rooms:35,rtype:"Club Level 1K + Club Level 2Q",rate:"$94",billing:"Master Bill",notes:["All charges to master","Rooming list","Breakfast buffet incl.","Multi-week block through Jun 17"],alert:"MASTER BILL · Multi-week block through Jun 17",master:true},
+  {org:"GE Precision Healthcare — LOGIQ E10 Course",contact:"Tarolyn Fulkerson",arr:609,dep:611,rooms:37,rtype:"Trad. 2 Queens",rate:"$109",billing:"Master Bill",notes:["Room & tax to master","Reservation cards","Club Lounge / Breakfast incl.","Shuttle to HCI + Airport req.","IN-HOUSE · Departs Jun 11"],alert:"MASTER BILL · Shuttle required · IN-HOUSE",master:true},
 
-  // ── NEW ARRIVALS May 26 – Jun 9 ──
-  {org:"The Grant Group — 2026 Bananas World Tour",contact:"Kevin Alexander / Shyla Hamilton",arr:604,dep:608,rooms:540,rtype:"Trad. 2Q + Trad. 2Dbl + Suite 1K + Trad. 1K + Club 1K + Club 2Q",rate:"$189",billing:"Master Bill",notes:["All charges to master","Rooming list","Breakfast incl.","1 comp per 25 rooms","2 suite upgrades if avail.","Water 2x 16.9oz/room/day","Comp meeting space bkfst + late night","Breakfast from no later than 7am","Peak 468","10% commission"],alert:"MASTER BILL · 540 rooms · LARGEST GROUP · Peak 468",master:true},
-  {org:"ROC Ventures — Fargo vs Milkmen June 2026",contact:"Andrew Carr",arr:604,dep:607,rooms:54,rtype:"Trad. 1 King + Trad. 2 Doubles",rate:"$79",billing:"Master Bill",notes:["All charges to master","Rooming list","Breakfast incl.","Room & tax paid by Milkmen","Peak 36"],alert:"MASTER BILL · $79 rate",master:true},
-  {org:"EventConnect: Prep Dig Gauntlet 2026 MKESI",contact:"Event Connect",arr:605,dep:607,rooms:160,rtype:"Trad. 2Q + Club 2Q + Trad. 2Dbl",rate:"$167",billing:"Individual",notes:["Rooming list","7% commission","Double occupancy","Peak 77"],alert:"160 contracted rooms · Double occupancy",master:false},
-  {org:"Glen Ellyn 13U — Baseball Tournament",contact:"Jenna Salm",arr:605,dep:607,rooms:30,rtype:"Trad. 1 King + Trad. 2 Doubles",rate:"$199",billing:"Individual",notes:["Breakfast incl.","Breakout room evening — Moorland 4","Baseball at The Rock","Individual pay own"],alert:null,master:false},
-  {org:"CHIRS Local Corporate — Level Up March 2026",contact:"Samantha Zillmer",arr:605,dep:607,rooms:50,rtype:"Trad. 1 King + Deluxe 1 King",rate:"$209",billing:"Individual",notes:["No breakfast incl.","Event at BCC","Individual call in & pay own","Peak 25"],alert:"No breakfast · Highest rate in window · $209",master:false},
-  {org:"Shivani & Daksh Wedding (TheStoryteller Events)",contact:"Prayag Patel",arr:605,dep:608,rooms:120,rtype:"Trad. 1K + Dlx 1K + Trad. 2Dbl",rate:"$201–$207",billing:"Individual",notes:["Outside catering $30/person","$3,000 room rental","Individual reservations","Peak 350"],alert:"Peak 350 · Outside catering · $3,000 rental",master:false},
-  {org:"WSC Summer Grand SLAM — June 2026 #1",contact:"Sean Kelly",arr:605,dep:607,rooms:72,rtype:"Trad. 2 Queens",rate:"$160",billing:"Individual",notes:["BBK + 2x Bonvoy Points","$10 rebate/room — invoiced 30 days","No Attrition","Peak 26"],alert:"$10 rebate to be invoiced within 30 days",master:false},
-  {org:"Most Worshipful Prince Hall Grand Lodge of WI",contact:"Micah Tharpe",arr:606,dep:611,rooms:140,rtype:"Trad. 1K + Club 2Q + Suite 1K + Club Suite 1K + Trad. 2Dbl + Suite 2Dbl + Trad. 2Q + Dlx 1K",rate:"$129–$199",billing:"Individual",notes:["Individual reservations","1 suite at group rate — RM 247 for Tharpe","$5 rebate per actualized paid room","15% disc. off A/V via KVL","2 Bonvoy pts per $ to planner","Free parking","Peak 225"],alert:"140 rooms · Suite for organizer · Rebate tracking req.",master:false},
-  {org:"Herzing University 10",contact:"Angela Merrill",arr:607,dep:611,rooms:144,rtype:"Trad. 1 King + Trad. 2 Doubles",rate:"$99",billing:"Individual",notes:["Breakfast incl.","Airport shuttle req.","Pre-arranged transport to/from Herzing","Nursing students"],alert:"144 rooms · Shuttle required",master:false},
-  {org:"WELS Theology Writers — Elementary Room Block JUN26",contact:"Sarah Krause",arr:607,dep:617,rooms:35,rtype:"Club Level 1K + Club Level 2Q",rate:"$94",billing:"Master Bill",notes:["All charges to master","Rooming list","Breakfast buffet incl.","GTDC"],alert:"MASTER BILL · Multi-week block through Jun 17",master:true},
-  {org:"GE Precision Healthcare — LOGIQ E10 Technology Course",contact:"Tarolyn Fulkerson",arr:609,dep:611,rooms:37,rtype:"Trad. 2 Queens",rate:"$109",billing:"Master Bill",notes:["Room & tax to master","Reservation cards","Club Lounge / Breakfast buffet incl.","Shuttle to HCI + Airport req."],alert:"MASTER BILL · Shuttle required",master:true},
+  // ── NEW ARRIVALS Jun 2 – Jun 16 ──
+  {org:"GRB Academy Franklin June (1) 2026",contact:"Anna Acker",arr:610,dep:615,rooms:50,rtype:"Trad. 2 Queens",rate:"$154",billing:"Individual",notes:["Breakfast incl.","$15 rebate + 7% commission","Rooming list","Tournament in Franklin","Individual pay own"],alert:null,master:false},
+  {org:"AHQKOZIOL — Room Block June 2026",contact:"Tammy Randa",arr:610,dep:615,rooms:75,rtype:"Trad. 2 Queens",rate:"$129",billing:"Individual",notes:["Breakfast incl.","Baseball tournament","Individual reservations","Peak 30"],alert:null,master:false},
+  {org:"WELS Home Missions June2026",contact:"Jill Doering",arr:610,dep:613,rooms:12,rtype:"Trad. 1 King",rate:"$94",billing:"Master Bill",notes:["Room & tax to master","Rooming list","Breakfast incl.","Shuttle to CSM may be needed","No hospitality room needed","Peak 38"],alert:"MASTER BILL · Shuttle may be needed",master:true},
+  {org:"Swords Wedding (Engine HQ) — Rooms Only",contact:"Haley Swords",arr:611,dep:614,rooms:42,rtype:"Suite 1K + Trad. 1K + Trad. 2Dbl",rate:"$121",billing:"Individual",notes:["Courtesy block","No breakfast incl.","10% commission","48hr cancellation penalty — 1 night + tax","24hr notice required early departures","Peak 10"],alert:"No breakfast · 48hr cancel penalty",master:false},
+  {org:"Dey/Kuehl Wedding — JUN26",contact:"Drew Dey",arr:611,dep:613,rooms:20,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$169",billing:"Individual",notes:["Breakfast incl.","Ceremony at St. Paul's Lutheran — Muskego","Reception at Muskego Lakes CC"],alert:null,master:false},
+  {org:"WSC Summer Grand SLAM — June 2026 #2",contact:"Sean Kelly",arr:612,dep:614,rooms:72,rtype:"Trad. 2Q + Club 2Q + Trad. 2Dbl + Trad. 1K",rate:"$160",billing:"Individual",notes:["BBK + 2x Bonvoy Points","$10 rebate/room — invoiced 30 days","No Attrition","Peak 26"],alert:"$10 rebate to be invoiced within 30 days",master:false},
+  {org:"MG Holistic Society — Staff & Vendors",contact:"Niki Grossheim",arr:612,dep:614,rooms:30,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$154",billing:"Mixed (Staff: Master / Vendors: Individual)",notes:["Staff: room & tax to master","Vendors: individual pay","20 vendor/exhibit tables around room","Rounds for 100 + stage/podium","Myasthenia Gravis Holistic Society","Peak 100"],alert:"Split billing — STAFF master / VENDORS individual",master:true},
+  {org:"Stay Play Made Simple — MN Stars Outbound",contact:"Anna Terry",arr:612,dep:614,rooms:100,rtype:"Trad. 2 Doubles",rate:"$159",billing:"Individual",notes:["Breakfast incl.","Rooming list","7% commission + $10 rebate","DBDB rooms","Tournament in Mukwonago","Individual pay own"],alert:null,master:false},
+  {org:"Purple Aces June 12 — Baseball",contact:"Andrew Godin",arr:612,dep:614,rooms:36,rtype:"Trad. 2 Queens",rate:"$154",billing:"Individual",notes:["Breakfast incl.","Individual reservations","Baseball tournament New Berlin","Peak 36"],alert:null,master:false},
+  {org:"Moline Blackhawks — Baseball",contact:"Mandy Meyers",arr:612,dep:614,rooms:28,rtype:"Trad. 2 Queens",rate:"$139",billing:"Individual",notes:["Breakfast incl.","Individual reservations","Baseball team New Berlin","Peak 28"],alert:null,master:false},
+  {org:"Wigand Wildner Wedding — Rooms Only JUN26",contact:"Dan Wildner",arr:612,dep:614,rooms:15,rtype:"Trad. 2Q + Trad. 1K",rate:"$189",billing:"Individual",notes:["Breakfast incl.","Wedding at Harley Davison Museum","7% commission","Individual reservations"],alert:null,master:false},
+  {org:"Minnesota Stars June 2026 — Baseball",contact:"Jason Whitehill",arr:612,dep:614,rooms:18,rtype:"Trad. 2 Doubles",rate:"$135",billing:"Individual",notes:["Breakfast incl.","Individual pay own","Baseball youth team New Berlin","Peak 18"],alert:null,master:false},
+  {org:"Herzing University 11",contact:"Angela Merrill",arr:614,dep:623,rooms:108,rtype:"Trad. 1K + Trad. 2Q",rate:"$99",billing:"Individual",notes:["Breakfast incl.","Airport shuttle req.","Pre-arranged transport","Nursing students","Long block through Jun 23"],alert:"108 rooms · Shuttle required · Through Jun 23",master:false},
+  {org:"WELS Theology Writers — High School JUN26",contact:"Sarah Krause",arr:614,dep:618,rooms:28,rtype:"Trad. 1 King",rate:"$94",billing:"Master Bill",notes:["All charges to master","Rooming list","Breakfast buffet incl."],alert:"MASTER BILL",master:true},
+  {org:"Manitowoc Company, Inc — June Meeting",contact:"Jennifer Roussy",arr:614,dep:619,rooms:37,rtype:"Trad. 1 King",rate:"$144",billing:"Master Bill",notes:["Room & tax to master","Rooming list","Nothing incl. in rate"],alert:"MASTER BILL · No breakfast",master:true},
+  {org:"WELS Ministry of Christian Giving — June2026",contact:"Karen Martinez",arr:615,dep:619,rooms:15,rtype:"Trad. 1 King",rate:"$94",billing:"Individual",notes:["Individual reservations","Breakfast buffet + 2 drink tickets incl.","Hospitality room 10–12 ppl","Peak 10"],alert:null,master:false},
+  {org:"Schluter Systems Workshops — June 2026",contact:"Lisa Chartier",arr:615,dep:618,rooms:73,rtype:"Trad. 1K + Trad. 2Q",rate:"$179",billing:"Master Bill",notes:["Room & tax to master","Individual reservations","BBK + lunch + all-bev package","15% disc. A/V both meetings","3 room upgrades + Double Points","7% commission","Direct bill approved","Peak 35"],alert:"MASTER BILL · Direct bill approved · 7% commission",master:true},
+  {org:"SCI — Rooms Only Jun2026",contact:"Stan Szafran",arr:616,dep:618,rooms:30,rtype:"Trad. 1 King",rate:"$169",billing:"Individual",notes:["Courtesy block","Shoulder dates Jun 15 + Jun 19","Individual reservations","Hotel Planner lead","7% commission"],alert:"Shoulder dates Jun 15 & Jun 19 — verify block",master:false},
+  {org:"NHSSCA National Convention June 2026",contact:"Eric Cash",arr:616,dep:620,rooms:400,rtype:"Trad. 1K + Trad. 2Dbl + Trad. 2Q + Dlx 1K",rate:"$142",billing:"Mixed (Attendees: Individual / Staff+VIP: Master)",notes:["Staff/VIP: room & tax to master","Attendees: individual pay","Conference at Muskego High School","20 added rooms Jun 16","70% attrition","No breakfast","Peak 250"],alert:"400 rooms · LARGEST GROUP · 70% attrition clause · No breakfast",master:true},
+  {org:"ROC Ventures — Kane Co vs Milkmen June",contact:"Andrew Carr",arr:616,dep:618,rooms:36,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$79",billing:"Master Bill",notes:["All charges to master","Rooming list","Breakfast incl.","Room & tax paid by Milkmen"],alert:"MASTER BILL · $79 rate",master:true},
+  {org:"GE Precision Healthcare — Voluson Technology Course",contact:"Tarolyn Fulkerson",arr:616,dep:618,rooms:41,rtype:"Club Level 1 King",rate:"$109",billing:"Individual",notes:["Individual reservations","Club Lounge / Breakfast incl.","Shuttle to HCI + Airport req.","Peak 25"],alert:"Shuttle required",master:false},
 ];
 
 const arrDays=[...new Set(groups.map(g=>g.arr))].sort((a,b)=>a-b);
@@ -113,7 +121,7 @@ let cur='all';
 
 function fmtDate(d){
   const m=Math.floor(d/100),day=d%100;
-  return m===5?`May ${day}`:`Jun ${day}`;
+  return m===6?`Jun ${day}`:`May ${day}`;
 }
 
 function filtered(){return cur==='all'?groups:groups.filter(g=>g.arr===cur);}
