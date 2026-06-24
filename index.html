@@ -32,6 +32,7 @@ tbody tr:last-child{border-bottom:none}
 tbody tr:hover{background:rgba(0,0,0,0.03)}
 td{padding:9px 12px;vertical-align:middle;color:#2c2820}
 .day-row td{background:#e8e0d4;font-family:'Courier New',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:#8a7f6e;padding:7px 12px;border-bottom:0.5px solid rgba(0,0,0,0.08)}
+.day-row.heavy td{background:#f4e4c4;color:#8a4808}
 .cell-org{font-size:12px;color:#2c2820}
 .cell-contact{font-family:'Courier New',monospace;font-size:10px;color:#9a8f7e;margin-top:2px}
 .cell-rooms{font-size:15px;font-weight:normal;color:#1a4a80}
@@ -55,9 +56,9 @@ td{padding:9px 12px;vertical-align:middle;color:#2c2820}
   <div class="header">
     <div>
       <div class="eyebrow">Sheraton Milwaukee Brookfield · Front Desk Reference</div>
-      <h1>Group Arrivals — Jun 16 – Jun 30, 2026</h1>
+      <h1>Group Arrivals — Jun 24 – Jul 11, 2026</h1>
     </div>
-    <div class="meta">Group Resumes 6/19 – 6/30<br>Confidential · Internal Use Only</div>
+    <div class="meta">Group Resumes 6/24 – 7/11<br>Confidential · Internal Use Only</div>
   </div>
   <div class="stats" id="stats"></div>
   <div class="filters" id="filter-bar"></div>
@@ -78,39 +79,16 @@ td{padding:9px 12px;vertical-align:middle;color:#2c2820}
 </div>
 <script>
 const dowLabel={
-  616:'Tue Jun 16',617:'Wed Jun 17',618:'Thu Jun 18',619:'Fri Jun 19',620:'Sat Jun 20',
-  621:'Sun Jun 21',622:'Mon Jun 22',623:'Tue Jun 23',624:'Wed Jun 24',625:'Thu Jun 25',
-  626:'Fri Jun 26',627:'Sat Jun 27',628:'Sun Jun 28',629:'Mon Jun 29',630:'Tue Jun 30'
+  624:'Wed Jun 24',625:'Thu Jun 25',626:'Fri Jun 26',627:'Sat Jun 27',628:'Sun Jun 28',
+  629:'Mon Jun 29',630:'Tue Jun 30',
+  701:'Wed Jul 1',702:'Thu Jul 2',703:'Fri Jul 3',704:'Sat Jul 4',705:'Sun Jul 5',
+  706:'Mon Jul 6',707:'Tue Jul 7',708:'Wed Jul 8',709:'Thu Jul 9',710:'Fri Jul 10',711:'Sat Jul 11'
 };
+const monthNames={6:'Jun',7:'Jul',8:'Aug'};
+const heavyDays=[707]; // 7/7: ~144 arrivals across 5 groups
 
 const groups=[
-  {org:"GE Precision HealthCare — Voluson Technology Course",contact:"Tarolyn Fulkerson",arr:616,dep:618,rooms:41,rtype:"Trad. 2 Queens",rate:"$109",billing:"Individual",notes:["Individual to pay","Club Lounge or breakfast buffet incl.","Shuttle to HCI req. + airport shuttle needed","Peak 25","Picked up 63"],alert:"Shuttle required",master:false},
-  {org:"NHSSCA National Convention — Rooms Only",contact:"Eric Cash",arr:616,dep:620,rooms:400,rtype:"Trad. 1K + Trad. 2Dbl + Club 1K + Dlx 1K + Trad. 2Q + Club 2Q",rate:"$142",billing:"Mixed (Attendees: Individual / Staff+VIP: Master)",notes:["Staff/VIP: room & tax to master","Attendees: individual pay","Conference at Muskego High School","20 added rooms 6/16","70% attrition · No breakfast","Peak 250","Picked up 424"],alert:"400 rooms · LARGEST GROUP · 70% attrition · No breakfast",master:true},
-  {org:"ROC Ventures — Kane Co vs Milkmen 2026",contact:"Andrew Carr",arr:616,dep:618,rooms:37,rtype:"Trad. 2Dbl + Trad. 2Q",rate:"$79",billing:"Master Bill",notes:["All charges to master","Rooming list","Breakfast incl.","Room & tax paid by Milkmen","Picked up 38"],alert:"MASTER BILL · $79 rate",master:true},
-  {org:"SCI — Rooms Only Jun2026",contact:"Stan Szafran",arr:616,dep:618,rooms:30,rtype:"Trad. 2 Queens",rate:"$169",billing:"Individual",notes:["Courtesy block · Hotel Planner lead","Shoulder dates added 6/15 + 6/19","Individual reservations","7% commission","Picked up 27"],alert:"Shoulder dates 6/15 & 6/19 — verify block",master:false},
-  {org:"Merit Financial Advisors — Room Block June2026",contact:"Tanya Roethel-King",arr:616,dep:618,rooms:22,rtype:"Dlx 1K + Club 1K + Trad. 1K",rate:"$190",billing:"Master Bill",notes:["Room & tax to master","Rooming list","Nothing incl. in rate","Picked up 26"],alert:"MASTER BILL · No breakfast",master:true},
-
-  {org:"Biskupski + Bender Wedding — Block JUNE2026",contact:"Alyssa Biskupski",arr:617,dep:622,rooms:52,rtype:"Trad. 2Dbl + Suite 1K + Club 2Q + Trad. 1K + Trad. 2Q",rate:"$179–$279",billing:"Individual",notes:["Comp ONE night (6/20) suite if event space booked w/ block","Reception at Milwaukee County Zoo","Individual reservations","Picked up 38"],alert:null,master:false},
-
-  {org:"South Wisconsin District LWML Convention Jun2026",contact:"Desirea Stewart",arr:618,dep:620,rooms:133,rtype:"Trad. 1K + Suite 1K + Trad. 2Dbl + Trad. 2Q",rate:"$159",billing:"Individual",notes:["Courtesy block · DoubleTake + Intermediary Bonvoy offer","10% commission per room night · custom menu prices","Approved 14-day cutoff · Direct bill","Arrowhead Conferences & Events","Peak 350","Picked up 84"],alert:"133 rooms · Direct bill · 14-day cutoff",master:false},
-
-  {org:"WSC Summer Grand SLAM — June 2026 #3 (Rooms Only)",contact:"Sean Kelly",arr:619,dep:621,rooms:72,rtype:"Trad. 2 Queens",rate:"$160",billing:"Individual",notes:["BBK + 2x Bonvoy Points","$10 rebate/room — invoiced, pay 30 days","No Attrition","Peak 26","Picked up 1"],alert:"$10 rebate to be invoiced within 30 days",master:false},
-  {org:"Wilson Motorsports (Donnie Wilson)",contact:"Frank Kimmel",arr:619,dep:624,rooms:120,rtype:"Trad. 2Q + Trad. 2Dbl + Trad. 1K",rate:"$139",billing:"Master Bill",notes:["All charges to master","Rooming list","Breakfast incl.","Group is big drinkers — will hit Craft Room","Races in Madison + Slinger","Picked up 88"],alert:"MASTER BILL · 120 rooms · Through Jun 24",master:true},
-  {org:"Thunder Stix 13U 2026 — Baseball",contact:"Amanda Bond",arr:619,dep:621,rooms:26,rtype:"Trad. 2 Queens",rate:"$189",billing:"Individual",notes:["Breakfast incl.","Baseball tournament New Berlin","Individual reservations","Picked up 14"],alert:null,master:false},
-  {org:"13U West Madison Thunder — Baseball",contact:"Melissa Boley",arr:619,dep:621,rooms:24,rtype:"Trad. 2Dbl + Trad. 2Q",rate:"$139",billing:"Individual",notes:["Sports team · breakfast incl.","Individual call in","Picked up 22"],alert:"Sheet lists 'Brookfield MN' — verify WI",master:false},
-  {org:"Park Ridge Warriors / Rangers",contact:"Mike Guenther",arr:619,dep:621,rooms:10,rtype:"Trad. 2Dbl + Dlx 1K + Suite 2Dbl",rate:"$139",billing:"Individual",notes:["Individual reservations","Peak 10","Picked up 22"],alert:null,master:false},
-
-  {org:"Ellie Brown + Colin Sodemann Wedding 2026",contact:"Groups360 Wedding",arr:620,dep:622,rooms:20,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$164",billing:"Individual",notes:["Individual reservations","7% commission per room night","Groups360 Wedding Account","Picked up 0"],alert:null,master:false},
-
-  {org:"Sportours — Indycar Testing June 2026",contact:"Molly Green",arr:621,dep:624,rooms:41,rtype:"Suite 1K + Trad. 1K + Club 1K",rate:"$110",billing:"Master Bill",notes:["Room & tax to master","Rooming list","One upgraded room at group rate","DO NOT CANCEL / NO SHOW","Breakfast NOT incl.","7% commission","Hotel Planner intermediary","Picked up 37"],alert:"MASTER BILL · Do not cancel/no show · No breakfast",master:true},
-  {org:"Generac Power Systems — Controllers Conference",contact:"Danniel Kaczoroski",arr:621,dep:626,rooms:100,rtype:"Trad. 1K + Trad. 2Q + Club 1K",rate:"$199",billing:"Individual",notes:["BBK incl.","Shuttle Mon–Thu pickup/dropoff at HQ (S45W29290 Hwy 59 Waukesha)","Attrition 20 rm nights / $3,980","Peak 20","Picked up 60"],alert:"100 rooms · Shuttle req. · Attrition clause · Through Jun 26",master:false},
-  {org:"Andretti Autosport — Indy Lights Team June 2026",contact:"Tracy Moyer",arr:621,dep:623,rooms:26,rtype:"Trad. 2Dbl + Deluxe 1K",rate:"$115",billing:"Master Bill",notes:["Room & tax to master","Rooming list","Breakfast incl.","In town for Indy testing","Peak 25","Picked up 28"],alert:"MASTER BILL",master:true},
-
-  {org:"Generac Power Systems — Residential Council (Rooms Only)",contact:"Danniel Kaczoroski",arr:622,dep:627,rooms:140,rtype:"Club 1K + Deluxe 1K",rate:"$209",billing:"Mixed (Grp 1: Individual / Grp 2: Master)",notes:["Grp 1 IPO: booking link · BBK incl.","Grp 2 RMTX: room & tax to master · rooming list · BBK incl.","Peak 20","Picked up 139"],alert:"140 rooms · Split billing IPO/RMTX · Through Jun 27",master:true},
-  {org:"DTAC Meeting June 2026 — Rooms Only",contact:"Ellena Talbott",arr:622,dep:624,rooms:50,rtype:"Trad. 1K + Trad. 2Q + Club 1K + Dlx 1K",rate:"$124",billing:"Individual",notes:["Individual call in","Group here to visit Quad Graphics","On own for any food/beverage","Picked up 53"],alert:null,master:false},
-  {org:"WELS Curriculum Leaders Summit — June2026",contact:"Sarah Krause",arr:622,dep:624,rooms:10,rtype:"Deluxe 1K + Trad. 1K",rate:"$94",billing:"Master Bill",notes:["Room & tax to master","Rooming list","Breakfast + 2 drink tickets/night incl.","Picked up 7"],alert:"MASTER BILL",master:true},
-  {org:"NAPM Board Meeting (National Postal Forum)",contact:"Andy Phillips",arr:622,dep:625,rooms:12,rtype:"Trad. 1 King",rate:"$124",billing:"Individual",notes:["Individual reservations","Board meeting","Picked up 11"],alert:null,master:false},
-
+  // ===== JUNE — kept from previous build (arrival >= 6/24) =====
   {org:"GRB Academy Franklin Jun2026 (2)",contact:"Anna Acker",arr:624,dep:627,rooms:55,rtype:"Trad. 2Q + Trad. 1K + Club 2Q",rate:"$184",billing:"Individual",notes:["Breakfast incl.","$15 rebate + 7% commission","Rooming list — individual pay own","Tournament in Franklin","ConferenceDirect","Picked up 57"],alert:null,master:false},
   {org:"Cantwell Wedding — Room Block June 2026",contact:"Conor Cantwell",arr:624,dep:628,rooms:40,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$159",billing:"Individual",notes:["May need shuttle to/from venue — $100 one-way","Each guest receives cold bottle of water","$250 cleaning fee to master","Individual reservations","Picked up 0"],alert:"$250 cleaning fee to master · Shuttle may be needed",master:false},
   {org:"AAFE Meeting June 2026",contact:"Kristen Worrall",arr:624,dep:626,rooms:10,rtype:"Deluxe 1 King",rate:"$129",billing:"Master Bill",notes:["Room & tax to master","Rooming list","2-day in-house meeting","Summer promo: spend $3,000–$7,000 free coffee break","Peak 20","Picked up 5"],alert:"MASTER BILL",master:true},
@@ -127,6 +105,19 @@ const groups=[
 
   {org:"George's Outing — JUN2026",contact:"George Porn",arr:627,dep:628,rooms:15,rtype:"Club 2Q + Trad. 2Q + Trad. 1K + Club 1K",rate:"$185",billing:"Individual",notes:["Family attending Brewers Game","Will utilize Craft Room on return","Breakfast incl.","Picked up 14"],alert:null,master:false},
   {org:"Schille Birthday/Graduation",contact:"Faith Schille",arr:627,dep:627,rooms:11,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$209",billing:"Individual",notes:["Waived rental, dance floor set-up, cake cutting fee","Breakfast incl. · Carnivore Buffet @ $48/pp","Sub mashed potatoes for jasmine rice","Client OK to bring outside dessert","Paying by Cashier's Check — CC on file backup","Peak 300","Picked up 0"],alert:"Paying by Cashier's Check · CC backup only",master:false},
+
+  // ===== JULY — new from July PDF (Powers Company excluded per request) =====
+  {org:"Minneapolis United — Minnesota Icemen July 2026",contact:"Josh Johnson",arr:701,dep:706,rooms:70,rtype:"Trad. 1K + Trad. 2Q",rate:"$134",billing:"Individual",notes:["Breakfast incl.","Baseball tournament Franklin","Individual reservations","Peak 28","Picked up 58"],alert:null,master:false},
+
+  {org:"Herzing University 12 — Nursing Students",contact:"Angela Merrill",arr:705,dep:709,rooms:144,rtype:"Trad. 1K + Trad. 2Q + Club 1K",rate:"$99",billing:"Individual",notes:["Breakfast incl.","Pre-arranged transport to/from Herzing","Nursing students","Block extends through 7/10 with shoulder nights","Daily peak ~36","Picked up 60"],alert:"144 cumulative rm-nights · ~36/night peak · Block extends to 7/10",master:false},
+
+  {org:"ROC Ventures — Winnipeg vs Milkmen July 2026",contact:"Andrew Carr",arr:705,dep:708,rooms:54,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$79",billing:"Master Bill",notes:["All charges to master","Rooming list","Breakfast incl.","Playing Milkmen baseball","Peak 36","Picked up 0"],alert:"MASTER BILL · $79 rate",master:true},
+
+  {org:"Andretti Autosport — Testing July 7",contact:"Tracy Moyer",arr:707,dep:708,rooms:39,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$134",billing:"Master Bill",notes:["Room & tax to master","Rooming list","Peak 45","Picked up 27"],alert:"MASTER BILL",master:true},
+  {org:"Sporttours — Juncos Racing July 2026",contact:"Lina Harris",arr:707,dep:708,rooms:31,rtype:"Trad. 2Dbl + Club 1K",rate:"$134",billing:"Master Bill",notes:["Room & tax to master","Rooming list","Breakfast incl. · IndyCar testing","10% commission per room night","Peak 45","Picked up 31"],alert:"MASTER BILL",master:true},
+  {org:"Sporttours — Rahal Letterman Lanigan Racing July 2026",contact:"Lina Harris",arr:707,dep:708,rooms:55,rtype:"Trad. 1K + Club 1K + Deluxe 1K + Trad. 2Q",rate:"$134",billing:"Master Bill",notes:["Room & tax to master","Rooming list","Breakfast incl.","Bonvoy Points to Brian Barnhart (982499477)","10% commission per room night","Peak 70","Picked up 55"],alert:"MASTER BILL · Bonvoy points routing",master:true},
+  {org:"WELS Home Missions July2026 — Rooms Only",contact:"Jill Doering",arr:707,dep:708,rooms:11,rtype:"Club Level 1 King",rate:"$94",billing:"Master Bill",notes:["Room & tax to master","Rooming list","Breakfast buffet + 2 drink tickets/night incl.","Peak 38","Picked up 12"],alert:"MASTER BILL",master:true},
+  {org:"WELS Theology Writers (Middle School)",contact:"Sarah Krause",arr:707,dep:711,rooms:25,rtype:"Trad. 2Q + Club Level 1K",rate:"$94",billing:"Master Bill",notes:["Room & tax to master","Rooming list","Breakfast buffet incl.","Picked up 16"],alert:"MASTER BILL",master:true},
 ];
 
 const arrDays=[...new Set(groups.map(g=>g.arr))].sort((a,b)=>a-b);
@@ -134,7 +125,7 @@ let cur='all';
 
 function fmtDate(d){
   const m=Math.floor(d/100),day=d%100;
-  return m===6?`Jun ${day}`:`May ${day}`;
+  return `${monthNames[m]||''} ${day}`;
 }
 
 function filtered(){return cur==='all'?groups:groups.filter(g=>g.arr===cur);}
@@ -166,9 +157,10 @@ function renderTable(list){
   const byDay={};
   list.forEach(g=>{(byDay[g.arr]=byDay[g.arr]||[]).push(g);});
   const days=Object.keys(byDay).sort((a,b)=>a-b);
-  tb.innerHTML=days.map(d=>`
-    ${cur==='all'?`<tr class="day-row"><td colspan="6">${fmtDate(+d)} &nbsp;·&nbsp; ${dowLabel[+d]||''}</td></tr>`:''}
-    ${byDay[d].map(g=>`
+  tb.innerHTML=days.map(d=>{
+    const heavy=heavyDays.includes(+d);
+    const dayHeader=cur==='all'?`<tr class="day-row${heavy?' heavy':''}"><td colspan="6">${fmtDate(+d)} &nbsp;·&nbsp; ${dowLabel[+d]||''}${heavy?' &nbsp;·&nbsp; HEAVY ARRIVAL DAY':''}</td></tr>`:'';
+    return dayHeader+byDay[d].map(g=>`
       <tr class="${g.alert&&!g.master?'row-alert':''} ${g.master?'row-master':''}">
         <td><div class="cell-org">${g.org}</div><div class="cell-contact">${g.contact}</div></td>
         <td class="cell-dates">${fmtDate(g.arr)} → ${fmtDate(g.dep)}</td>
@@ -176,7 +168,8 @@ function renderTable(list){
         <td class="cell-rate">${g.rate}/nt</td>
         <td><span class="badge ${g.master?'b-master':'b-indi'}">${g.billing}</span></td>
         <td><div class="notes">${g.alert?`<span class="note-tag note-alert">${g.alert}</span>`:''}${g.notes.map(n=>`<span class="note-tag">${n}</span>`).join('')}</div></td>
-      </tr>`).join('')}`).join('');
+      </tr>`).join('');
+  }).join('');
 }
 
 function filter(d,el){
