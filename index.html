@@ -18,6 +18,7 @@ h1{font-size:20px;font-weight:normal;color:#2c2820;letter-spacing:-.02em}
 .stat-val{font-size:24px;font-weight:normal;line-height:1;color:#2c2820}
 .stat-val.v-amber{color:#a05c10}
 .stat-val.v-green{color:#2a7a4a}
+.stat-val.v-red{color:#a03018}
 .stat-sub{font-family:'Courier New',monospace;font-size:9px;color:#a09080;margin-top:3px}
 .filters{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:16px}
 .pill{font-family:'Courier New',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:4px 13px;border-radius:20px;cursor:pointer;border:0.5px solid rgba(0,0,0,0.15);background:transparent;color:#7a7060;transition:all .12s}
@@ -32,6 +33,7 @@ tbody tr:last-child{border-bottom:none}
 tbody tr:hover{background:rgba(0,0,0,0.03)}
 td{padding:9px 12px;vertical-align:middle;color:#2c2820}
 .day-row td{background:#e8e0d4;font-family:'Courier New',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:#8a7f6e;padding:7px 12px;border-bottom:0.5px solid rgba(0,0,0,0.08)}
+.day-row.heavy td{background:#f4e4c4;color:#8a4808}
 .cell-org{font-size:12px;color:#2c2820}
 .cell-contact{font-family:'Courier New',monospace;font-size:10px;color:#9a8f7e;margin-top:2px}
 .cell-rooms{font-size:15px;font-weight:normal;color:#1a4a80}
@@ -44,26 +46,17 @@ td{padding:9px 12px;vertical-align:middle;color:#2c2820}
 .notes{display:flex;flex-wrap:wrap;gap:3px}
 .note-tag{font-family:'Courier New',monospace;font-size:9px;padding:1px 6px;border-radius:3px;background:rgba(0,0,0,0.05);color:#7a7060;border:0.5px solid rgba(0,0,0,0.07)}
 .note-alert{background:#faebd0;color:#8a4808;border-color:#d4943a;font-weight:bold}
-.note-new{background:#dde8f5;color:#1a4a80;border-color:#7ba3d0}
-.note-red{background:#f5dcdc;color:#9a2020;border-color:#d08080;font-weight:bold}
+.note-red{background:#f4d8d0;color:#8a2010;border-color:#c86050;font-weight:bold}
 .row-alert td:first-child{box-shadow:inset 3px 0 0 #c8841a}
 .row-master td:first-child{box-shadow:inset 3px 0 0 #3a9e68}
-.row-red td:first-child{box-shadow:inset 3px 0 0 #b83030}
-.flags{background:#f6ead2;border:0.5px solid #d4943a;border-radius:9px;padding:13px 16px;margin-bottom:14px}
-.flags h2{font-family:'Courier New',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#8a4808;font-weight:bold;margin-bottom:8px}
-.flags ul{list-style:none;display:flex;flex-direction:column;gap:5px}
-.flags li{font-size:11.5px;color:#5c4418;line-height:1.5;padding-left:13px;position:relative}
-.flags li::before{content:'·';position:absolute;left:2px;color:#c8841a;font-weight:bold}
-.flags b{color:#8a4808}
-.changes{background:#e3ecf7;border:0.5px solid #7ba3d0;border-radius:9px;padding:13px 16px;margin-bottom:20px}
-.changes h2{font-family:'Courier New',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#1a4a80;font-weight:bold;margin-bottom:8px}
-.changes ul{list-style:none;display:flex;flex-direction:column;gap:5px}
-.changes li{font-size:11.5px;color:#254a70;line-height:1.5;padding-left:13px;position:relative}
-.changes li::before{content:'·';position:absolute;left:2px;color:#4a7ab0;font-weight:bold}
-.changes b{color:#1a4a80}
+.row-red td:first-child{box-shadow:inset 3px 0 0 #b04028}
 .empty-row td{padding:32px;text-align:center;font-family:'Courier New',monospace;font-size:11px;color:#9a8f7e;letter-spacing:.06em}
+.watchlist{margin-top:22px;background:#f4d8d0;border:0.5px solid #c86050;border-radius:10px;padding:14px 18px}
+.watchlist-title{font-family:'Courier New',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#8a2010;margin-bottom:8px;font-weight:bold}
+.watchlist ul{list-style:none;padding:0;margin:0}
+.watchlist li{font-size:11px;color:#5a2010;padding:3px 0;line-height:1.5}
+.watchlist li strong{color:#8a2010}
 .footer{margin-top:28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:'Courier New',monospace;font-size:9px;color:#a09080;letter-spacing:.05em;text-transform:uppercase}
-@media(max-width:720px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.tbl-wrap{overflow-x:auto}table{min-width:820px}}
 </style>
 </head>
 <body>
@@ -71,43 +64,31 @@ td{padding:9px 12px;vertical-align:middle;color:#2c2820}
   <div class="header">
     <div>
       <div class="eyebrow">Sheraton Milwaukee Brookfield · Front Desk Reference</div>
-      <h1>Group Arrivals — Jul 29 – Aug 12, 2026</h1>
+      <h1>Group Arrivals — Aug 5 – Aug 22, 2026</h1>
     </div>
-    <div class="meta">Group Resumes 7/29 – 8/12 Packet<br>Confidential · Internal Use Only</div>
+    <div class="meta">Group Resumes 8/5 – 8/22<br>Confidential · Internal Use Only</div>
   </div>
-
-  <div class="changes">
-    <h2>Changed since the 7/21 – 8/4 packet</h2>
-    <ul>
-      <li><b>Upledger (7/29)</b> — master account now confirmed as <b>Blue Print Events, LLC</b>. New Client History / Red Flag page: group raised <b>cleanliness &amp; housekeeping concerns in 2025</b>. Wants proactive inspection of guest rooms, meeting space and public restrooms, plus <b>immediate escalation of any service issue to MOD / Convention Services</b>.</li>
-      <li><b>BetterLife (7/30)</b> — new Blue Print Events group on this packet (145+ rooms, split attendee/staff billing), separate from International Housewares. Event onsite Thu–Sun, waived rental.</li>
-      <li><b>International Housewares (7/30 – 8/20)</b> — carried forward; still 382 rooms across two blocks (attendee IPO / staff master). Cathy Palmisano VIP.</li>
-    </ul>
-  </div>
-
-  <div class="flags">
-    <h2>Watch list — heaviest days &amp; data notes</h2>
-    <ul>
-      <li><b>Upledger — RED FLAG group.</b> 2025 housekeeping complaints. Inspect proactively, respond fast, escalate to MOD immediately. Craft Room must be open (on own for lunch &amp; dinner).</li>
-      <li><b>Wed–Sun Aug 5–9 — WI Square Dance Convention.</b> 254 rooms, <b>90% attrition</b>, entire event onsite, separate $3,500 dance-floor contract. Overlaps LWMS, Morrow Soil &amp; Water, Kobinsky wedding and the start of Hawkins Ash — Aug 5–8 is the packet's busiest stretch.</li>
-      <li><b>Hawkins Ash CPAs (8/7) — attrition + Brewers shuttle.</b> Currently <b>14 room nights × $199 = $2,786 attrition</b>. Group wants a shuttle to a Brewers game (pickup outside Brookfield ballroom); WI Square Dancers are onsite in the ballroom. Shoulder nights are individual pay-on-own.</li>
-      <li><b>SBA Meeting August (8/9) — pickup 0</b> of 185. Pre-key, no posting, all charges to master. Rooming list outstanding.</li>
-      <li><b>Two Milkmen blocks:</b> Gary vs Milkmen (8/4) and Chicago vs Milkmen (8/11). Both ROC Ventures, all charges to master, room &amp; tax paid by Milkmen, pre-key. Gary block still shows pickup 0.</li>
-      <li><b>Morrow Soil &amp; Water (8/5)</b> — preselected menu; <b>remove all room taxes after night audit</b>; have keys ready and breakfast set at check-in.</li>
-    </ul>
-  </div>
-
   <div class="stats" id="stats"></div>
   <div class="filters" id="filter-bar"></div>
   <div class="tbl-wrap">
     <table>
       <thead>
         <tr>
-          <th>Organization</th><th>Arrival → Dep.</th><th>Rooms</th><th>Rate</th><th>Billing</th><th>Notes &amp; Alerts</th>
+          <th>Organization</th><th>Arrival → Dep.</th><th>Rooms</th><th>Rate</th><th>Billing</th><th>Notes & Alerts</th>
         </tr>
       </thead>
       <tbody id="tbody"></tbody>
     </table>
+  </div>
+  <div class="watchlist">
+    <div class="watchlist-title">⚠ Watchlist — Operational Risks</div>
+    <ul>
+      <li><strong>SBA Meeting (8/9–8/14):</strong> 185 contracted, 0 pickup across all days. Pre-key/no posting set. Rooming list not received as of 8/4 — escalate to sales for status.</li>
+      <li><strong>Herzing duplicate block risk (8/16–8/22):</strong> Two separate quotes (M-W7HUF0D 40 rms + M-VWM502G0 16 rms) overlap 8/18–8/20. Same contact. Verify these are intentionally separate, not a double-booking.</li>
+      <li><strong>Hawkins Ash × WI Square Dance ballroom conflict (8/7–8/9):</strong> Hawkins is aware Square Dancers are onsite. Coordinate signage/directions to prevent Ballroom mix-ups.</li>
+      <li><strong>WI Square Dance (8/5–8/9):</strong> 254 rms · 90% attrition clause · entire event onsite · potential dance floor rental $3,500. Largest group in view.</li>
+      <li><strong>Bobby Friss (8/13–8/16):</strong> Master account labeled "MKESI Social Account 2025" — block is 2026. Verify contract year before checkout.</li>
+    </ul>
   </div>
   <div class="footer">
     <span>Sheraton Milwaukee Brookfield · 375 S Moorland Rd, Brookfield WI 53005</span>
@@ -116,40 +97,52 @@ td{padding:9px 12px;vertical-align:middle;color:#2c2820}
 </div>
 <script>
 const dowLabel={
-  729:'Wed Jul 29',730:'Thu Jul 30',731:'Fri Jul 31',802:'Sun Aug 2',803:'Mon Aug 3',804:'Tue Aug 4',
-  805:'Wed Aug 5',807:'Fri Aug 7',808:'Sat Aug 8',809:'Sun Aug 9',810:'Mon Aug 10',811:'Tue Aug 11',812:'Wed Aug 12'
+  805:'Wed Aug 5',806:'Thu Aug 6',807:'Fri Aug 7',808:'Sat Aug 8',809:'Sun Aug 9',
+  810:'Mon Aug 10',811:'Tue Aug 11',812:'Wed Aug 12',813:'Thu Aug 13',814:'Fri Aug 14',
+  815:'Sat Aug 15',816:'Sun Aug 16',817:'Mon Aug 17',818:'Tue Aug 18',819:'Wed Aug 19',
+  820:'Thu Aug 20',821:'Fri Aug 21',822:'Sat Aug 22'
 };
+const monthNames={6:'Jun',7:'Jul',8:'Aug'};
+const heavyDays=[805,813]; // 8/5: 3 groups incl. Square Dance; 8/13: 3 groups, 179 arrivals
 
 const groups=[
-  {org:"Upledger Institute JUL2026 — Blue Print Events",contact:"JoAnn Hambuechen",arr:729,dep:802,rooms:48,rtype:"Trad. 2Dbl (attendees) + Trad. 1K (staff)",rate:"$139",billing:"Mixed (Staff: Master / Attendees: IPO)",notes:["RED FLAG — 2025 housekeeping complaints","Inspect guest rooms, meeting space & public restrooms proactively","Escalate ANY service issue to MOD / Convention Services immediately","Staff rooming list, room & tax to master (IATA 10616572)","Attendees IPO · 7% commission","Three meeting rooms — many classroom tables","CRAFT ROOM MUST BE OPEN — on own for lunch & dinner","Attendee block 32 · Staff block 16 · Picked up 40"],alert:"RED FLAG · 2025 cleanliness concerns — escalate fast",master:true,red:true},
+  // ===== AUG 5 =====
+  {org:"WI Square Dance Association Convention 2026",contact:"Wayne Irwin",arr:805,dep:809,rooms:254,rtype:"Trad. 2 Queens (Dbl occ)",rate:"$139",billing:"Individual",notes:["90% Attrition — entire event onsite","May contract dance floor · Quote $3,500","Peak 200","Picked up 266"],alert:"254 rooms · LARGEST GROUP · 90% attrition · Full onsite event",master:false,red:true},
+  {org:"LWMS Board of Directors Meeting Aug2026",contact:"Brittany Smith",arr:805,dep:808,rooms:18,rtype:"Trad. 2Q + Trad. 1K",rate:"$169",billing:"Master Bill",notes:["Rooms only · Billed to Master","Rooming list to be provided","BBK Included · No other concessions or needs","Picked up 18"],alert:"MASTER BILL",master:true},
+  {org:"Morrow Soil and Water Conservation",contact:"Jamie Bailey",arr:805,dep:806,rooms:28,rtype:"Club Level 1K + Trad. 2Dbl",rate:"$105",billing:"Master Bill",notes:["All charges to master","Preselected: lasagna or chicken alfredo w/ soft drink/iced tea + brownie @ $30pp inclusive","All room taxes removed after night audit","Pre Check-In · keys ready · BBK incl.","Payment: CHECK","Picked up 30"],alert:"MASTER BILL · Pre check-in · Payment by check",master:true},
 
-  {org:"BetterLife JUL26 — Blue Print Events, LLC",contact:"Erin Sitteley",arr:730,dep:803,rooms:145,rtype:"Trad. 2Q + Trad. 1K + Trad. 2Dbl + Suite 1K",rate:"$149",billing:"Mixed (Staff: Master / Attendees: IPO)",notes:["NEW this packet","Breakfast incl. in rate · waived rental","Event onsite Thursday–Sunday","Attendee block 100 (IPO) + Staff block 45 (room & tax to master)","Attendees individual reservations, staff rooming list","Picked up 146"],alert:"Split billing · Event onsite Thu–Sun",master:true},
-  {org:"International Housewares 2026 — Rooms Only",contact:"Cathy Palmisano",arr:730,dep:820,rooms:382,rtype:"Trad. 2Q + Suite 1K + Trad. 1K",rate:"$117 IPO / $104 staff",billing:"Mixed (Staff: Master / Attendees: IPO)",notes:["TWO blocks — attendee IPO | staff room & tax to master","Both rooming list","Cathy Palmisano is VIP — suite at group rate","Runs through Aug 20 — three-week stay","Attendee block 198 · Staff block 184 · Picked up 407"],alert:"382 rooms · 3-WEEK STAY · Split billing · VIP: Cathy Palmisano",master:true},
+  // ===== AUG 7 =====
+  {org:"Kobinsky Davidson Wedding Block AUG26",contact:"Emily Davidson",arr:807,dep:809,rooms:15,rtype:"Trad. 2Q + Trad. 1K",rate:"$184",billing:"Individual",notes:["Wedding Venue @ Westmoor Country Club — NO shuttle","Nothing incl. in rate","Gift Bags noted ($3?) — verify with sales","Picked up 15"],alert:null,master:false},
+  {org:"Hawkins Ash CPAs — Brewers Game Event",contact:"Stacy Bouchard",arr:807,dep:809,rooms:100,rtype:"Trad. 2Q + Club 1K + Club 2Q + Trad. 2Dbl",rate:"$199",billing:"Master Bill",notes:["BBK incl. in rate","Currently 14 rm-nights × $199 = $2,786 (partial)","Group shuttle picks up outside Brookfield Ballroom for Brewers Game","Group aware WI Square Dancers onsite in Ballroom","Shoulder nights = Individual Pay On Own","Picked up 67"],alert:"MASTER BILL · Ballroom shared w/ Square Dance · Brewers shuttle",master:true},
 
-  {org:"ISA 14U Royal Softball",contact:"Kelly Bucher",arr:731,dep:802,rooms:16,rtype:"Trad. 2Dbl + Trad. 2Q",rate:"$109",billing:"Individual",notes:["Individual reservations · breakfast incl.","Amateur Sports intermediary","Billing address listed 'Unknown' — verify at check-in","Picked up 30"],alert:"Billing address unknown on resume",master:false},
+  // ===== AUG 9 =====
+  {org:"GE Healthcare — GEHC OMLP August 2026",contact:"Aaron Robbins",arr:809,dep:812,rooms:6,rtype:"Standard 1 King",rate:"$109",billing:"Master Bill",notes:["Room & tax to master","Rooming list","Club lounge access incl. in rate — Pre-scheduled","Airport + GEHC office shuttle needed & incl. in rate","Block: 8/9, 8/10, 8/11 + 8/16 (gap 8/12–8/15)","Picked up 6"],alert:"MASTER BILL · Split dates w/ 8/16 return · Shuttle req.",master:true},
+  {org:"Susan B. Anthony Pro-Life America — SBA Meeting Aug 2026",contact:"Erica Caporaletti",arr:809,dep:814,rooms:185,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$119",billing:"Master Bill",notes:["All charges to master · Rooming list","Pre Key | No Posting (circled — verify)","Contracted 185 · Projected 139 · Picked up 0","Sunday Night noted"],alert:"MASTER BILL · 185 rms · ZERO PICKUP · Escalate rooming list",master:true,red:true},
 
-  {org:"Herzing University August 2-6 2026",contact:"Angela Merrill",arr:802,dep:806,rooms:16,rtype:"Trad. 2 Doubles",rate:"$99",billing:"Individual",notes:["Individual reservations","Breakfast incl. + shuttle to Herzing campus","To Herzing 7am, pick-up 5pm each day","Picked up 8"],alert:null,master:false},
+  // ===== AUG 10 =====
+  {org:"Aptean Customer Meeting AUG2026",contact:"Morgan Jameson",arr:810,dep:812,rooms:25,rtype:"Traditional 1 King",rate:"$129",billing:"Individual",notes:["Courtesy Block — Individual Pay","F&B: only water/coffee for meeting — increased rental / decreased F&B min","Rental Fee $350","Offsite happy hour + Pizza at Whirly Ball — will walk","A/V: projector or TV, mic, WiFi","Picked up 10"],alert:null,master:false},
 
-  {org:"WELS Commission on Evangelism ILA Meeting Aug2026",contact:"Maxine Neumann",arr:803,dep:805,rooms:9,rtype:"Traditional 1 King",rate:"$94",billing:"Master Bill",notes:["Room & tax to master","Individual reservations","Breakfast buffet + 2 WELS drink tickets incl.","Shuttle to/from Airport + CSM incl. — pre-schedule","No hospitality room requested","Picked up 13"],alert:"MASTER BILL · TAX EXEMPT · Shuttle",master:true},
-  {org:"WELS Ministry Recruitment Aug2026 — Campus Ministry",contact:"Carla Martin",arr:803,dep:806,rooms:27,rtype:"Traditional 1 King",rate:"$94",billing:"Master Bill",notes:["Room & tax to master","Rooming list · Pre-Key","Breakfast buffet + 2 WELS drink tickets incl.","Shuttle to/from Airport + CSM incl. — pre-schedule","Picked up 8"],alert:"MASTER BILL · TAX EXEMPT · Pre-Key · Shuttle",master:true},
+  // ===== AUG 12 =====
+  {org:"CONFAB for Planners Aug 2026",contact:"Victor Dinh",arr:812,dep:813,rooms:5,rtype:"Trad. 2 Queens",rate:"$120",billing:"Individual",notes:["20 planners & 20 suppliers (1:1 gtd ratio) — speed-dating style trade show","F&B and A/V to Sales & marketing promo — half covered by VB","2 comp staff rooms · comp mic · 15–20 3ft tables · 3-min property speech","VIP pre-scheduled · let Housekeeping know · Peak 40","Picked up 5"],alert:"VIP pre-scheduled · Notify HSK",master:false},
 
-  {org:"Gary vs Milkmen Aug2026 — ROC Ventures",contact:"Andrew Carr",arr:804,dep:807,rooms:54,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$79",billing:"Master Bill",notes:["ALL charges to master","Reservation cards · Pre Key rooms","Breakfast incl.","Room & tax paid by Milkmen","Bus arrival time determined one week in advance","Projected 42 · PICKED UP 0"],alert:"MASTER BILL · PICKUP 0 of 54 — rooming list outstanding",master:true},
-  {org:"Uncommon USA August 2026",contact:"Maria Godinez",arr:804,dep:817,rooms:65,rtype:"Traditional 2 Doubles",rate:"$99",billing:"Master Bill",notes:["Room & tax to master","Rooming list","Breakfast incl.","Group working a booth at the State Fair","Runs through Aug 16 · Picked up 71"],alert:"MASTER BILL · Long stay through Aug 16",master:true},
+  // ===== AUG 13 =====
+  {org:"Wisconsin Upper-Michigan Kiwanis Convention Aug 2026",contact:"Justin Hahn",arr:813,dep:815,rooms:113,rtype:"Standard 2Q + Suite 1K",rate:"$139",billing:"Individual",notes:["Direct bill APPROVED · Master account: WI Upper-Michigan Kiwanis Conv.","1 comp suite as concession","Event onsite · Peak 100","Picked up 116"],alert:"Direct bill approved (verify billing method w/ sales)",master:false},
+  {org:"ROC Ventures — KC vs Milkmen August 2026",contact:"Andrew Carr",arr:813,dep:816,rooms:54,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$79",billing:"Master Bill",notes:["All charges to master · Rooming list","Breakfast incl. · Pre-keyed","Bus arrival TBD","Room, Tax & Incidentals Paid By Milkmen","Picked up 0"],alert:"MASTER BILL · $79 rate · Bus TBD · Pre-key",master:true},
+  {org:"Bobby Friss August 2026",contact:"Bobby Friss",arr:813,dep:816,rooms:12,rtype:"Traditional 1 King",rate:"$109",billing:"Master Bill",notes:["Room & tax to master · Rooming list","Club Lounge for Bobby Friss ONLY","Breakfast incl.","Pre Key | No Posting","Master labeled 'Social Account 2025' — block is 2026","Picked up 12"],alert:"MASTER BILL · Verify 2025/2026 account label · Pre-key",master:true},
 
-  {org:"WI Square & Round Dance Convention 2026 — Square Dance Assoc. of Wisconsin",contact:"Wayne Irwin",arr:805,dep:809,rooms:254,rtype:"Trad. 2Q + Trad. 1K + Trad. 2Dbl",rate:"$139–$159",billing:"Individual",notes:["90% ATTRITION — entire event onsite","May contract dance floor, quote $3,500","Individual reservations · single/dbl/triple/quad occupancy","Picked up 266","Peak Sat 8/8"],alert:"254 rooms · 90% ATTRITION · Entire event onsite",master:false},
-  {org:"LWMS Board of Directors Meeting AUG2026 — Lutheran Women's Missionary Society",contact:"Brittany Smith",arr:805,dep:808,rooms:18,rtype:"Trad. 2Q + Trad. 1K",rate:"$169",billing:"Master Bill",notes:["Room & tax to master · rooming list","Rooms only — no other concessions or needs","Picked up 18"],alert:"MASTER BILL",master:true},
-  {org:"Morrow Soil and Water Conservation",contact:"Jamie Bailey",arr:805,dep:806,rooms:28,rtype:"Club Level 1K + Trad. 2Dbl",rate:"$105",billing:"Master Bill",notes:["ALL charges to master · rooming list","Preselected lasagna OR chicken alfredo — soft drink/iced tea + brownie, $30 pp inclusive (per Chef 4-15-26)","REMOVE ALL ROOM TAXES after night audit","Pre-key: have keys ready + breakfast set at check-in","One night only · Picked up 30"],alert:"MASTER BILL · Remove room taxes at night audit · Pre-Key",master:true},
+  // ===== AUG 14 =====
+  {org:"WI DHS — DPH Event 13709",contact:"Chantel Wiedmeyer",arr:814,dep:815,rooms:10,rtype:"Traditional 1 King",rate:"$106",billing:"Master Bill",notes:["Room & tax to master · Rooming list","TAX EXEMPT","Pre Key | No Posting","State per diem: direct bill meetings + 2 guest rooms","Lunch $12 + Snack $7 (per diem food)","Need: coffee, TV w/ HDMI, projector, screen","niche-events@... intermediary"],alert:"MASTER BILL · TAX EXEMPT · Pre-key · Per diem F&B",master:true},
 
-  {org:"Kobinsky Davidson Wedding Block AUG26 — MKESI Wedding Account",contact:"Emily Davidson",arr:807,dep:809,rooms:15,rtype:"Trad. 2Q + Trad. 1K",rate:"$184",billing:"Individual",notes:["Individual reservations","Wedding venue @ Westmoor Country Club — NO shuttle","Nothing included in the rate","Picked up 15"],alert:"No breakfast · No shuttle",master:false},
-  {org:"Hawkins Ash CPAs — Brewers Game Event",contact:"Stacy Bouchard",arr:807,dep:809,rooms:100,rtype:"Trad. 2Q + Club 1K + Club 2Q + Trad. 2Dbl",rate:"$199",billing:"Master Bill",notes:["Room & tax to master · rooming list","BBK incl. in rate","ATTRITION currently 14 room nights × $199 = $2,786","Group shuttle to Brewers game — pickup outside Brookfield ballroom","WI Square Dancers are onsite in the ballroom — coordinate","Shoulder nights are individual pay-on-own","Picked up 67"],alert:"MASTER BILL · Attrition $2,786 · Brewers shuttle vs ballroom",master:true},
+  // ===== AUG 16 =====
+  {org:"Herzing University August 2026",contact:"Angela Merrill",arr:816,dep:821,rooms:40,rtype:"Trad. 2Q + Trad. 1K",rate:"$99",billing:"Individual",notes:["Breakfast incl.","Shuttle to & from Herzing campus","7am shuttle · 5pm pickup from Herzing","Quote M-W7HUF0D · Peak daily ~10","Picked up 50"],alert:"Overlaps w/ Herzing 1618 block — verify separate",master:false},
+  {org:"WELS World Missions Aug2026 — Rooms Only",contact:"Jill Doering",arr:816,dep:818,rooms:7,rtype:"Traditional 1 King",rate:"$94",billing:"Master Bill",notes:["Room & tax to master · Rooming list","Rate incl. breakfast + 2 WELS drink tickets per guest","Shuttle to/from airport or CMM — Pre-Scheduled","Picked up 7"],alert:"MASTER BILL · Shuttle req.",master:true},
 
-  {org:"SBA Meeting August 2026 — Susan B. Anthony Pro-Life America",contact:"Erica Caporaletti",arr:809,dep:814,rooms:185,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$119",billing:"Master Bill",notes:["ALL charges to master","Rooming list · Pre Key | NO POSTING","Projected 139 · PICKED UP 0","Rooming list outstanding"],alert:"MASTER BILL · PICKUP 0 of 185 · Pre-Key · No posting",master:true},
+  // ===== AUG 17 =====
+  {org:"WELS Christian Giving Counselors Aug2026",contact:"Karen Martinez",arr:817,dep:819,rooms:30,rtype:"Traditional 1 King",rate:"$94",billing:"Individual",notes:["Individual reservations","Shuttle to/from Airport incl. — Pre-Scheduled","Breakfast buffet + 2 WELS drink tickets incl.","Hospitality room in WI Wing — no charge","Picked up 19"],alert:"Shuttle req. · Hospitality room in WI Wing",master:false},
 
-  {org:"Aptean Customer Meeting AUG2026",contact:"Morgan Jameson",arr:810,dep:812,rooms:25,rtype:"Traditional 1 King",rate:"$129",billing:"Individual",notes:["Individual reservations · pay own","F&B water + coffee for meeting · rental fee $350","Offsite happy hour + pizza at Whirly Ball — will walk","AV: projector, microphone & wifi (KVL to quote)","Picked up 6"],alert:null,master:false},
-
-  {org:"Chicago vs Milkmen 2026 — ROC Ventures",contact:"Andrew Carr",arr:811,dep:813,rooms:36,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$79",billing:"Master Bill",notes:["ALL charges to master","Pre Key · NO POSTING","Breakfast incl.","Room & tax paid by Milkmen","Picked up 36"],alert:"MASTER BILL · Pre-Key · No posting",master:true},
-
-  {org:"CONFAB for Planners Aug 2026",contact:"Victor Dinh",arr:812,dep:813,rooms:5,rtype:"Traditional 2 Queens",rate:"$120",billing:"Individual",notes:["Individual reservations","20 planners + 20 suppliers, 1:1 speed-dating trade show","F&B + AV to be sales & marketing promo, half covered by VB","2 comp staff rooms · comp mic · 15–20 3ft tables · 3-min property speech","Picked up 5"],alert:null,master:false},
+  // ===== AUG 18 =====
+  {org:"GE Precision HealthCare — LOGIQ E10 Technology Course Aug 2026",contact:"Tarolyn Fulkerson",arr:818,dep:820,rooms:37,rtype:"Trad. 2 Queens",rate:"$109",billing:"Master Bill",notes:["Room & tax to master · Reservation cards","Club Lounge access incl.","Shuttle to HCI + airport shuttle req. · Pre-Scheduled","Welcome Letter (personalized by Abby) to distribute","VIP guest room inspections needed (waiting for rooming list)","Picked up 0"],alert:"MASTER BILL · Shuttle req. · VIP inspections · Welcome letter",master:true},
+  {org:"Herzing University 1618",contact:"Angela Merrill",arr:818,dep:822,rooms:16,rtype:"Traditional 2 Queens",rate:"$99",billing:"Individual",notes:["Breakfast incl. · Shuttle to campus","7am pick up at Herzing","Quote M-VWM502G0 · Peak daily ~4","Picked up 16"],alert:"Overlaps w/ Herzing August block — verify separate",master:false},
 ];
 
 const arrDays=[...new Set(groups.map(g=>g.arr))].sort((a,b)=>a-b);
@@ -157,7 +150,7 @@ let cur='all';
 
 function fmtDate(d){
   const m=Math.floor(d/100),day=d%100;
-  return (m===7?'Jul ':'Aug ')+day;
+  return `${monthNames[m]||''} ${day}`;
 }
 
 function filtered(){return cur==='all'?groups:groups.filter(g=>g.arr===cur);}
@@ -175,10 +168,11 @@ function renderStats(list){
   const total=list.reduce((s,g)=>s+g.rooms,0);
   const alerts=list.filter(g=>g.alert).length;
   const masters=list.filter(g=>g.master).length;
+  const reds=list.filter(g=>g.red).length;
   document.getElementById('stats').innerHTML=`
     <div class="stat"><div class="stat-label">Groups</div><div class="stat-val">${list.length}</div><div class="stat-sub">in view</div></div>
     <div class="stat"><div class="stat-label">Total rooms</div><div class="stat-val">${total.toLocaleString()}</div><div class="stat-sub">contracted</div></div>
-    <div class="stat"><div class="stat-label">Alerts</div><div class="stat-val ${alerts?'v-amber':''}">${alerts}</div><div class="stat-sub">need attention</div></div>
+    <div class="stat"><div class="stat-label">Alerts</div><div class="stat-val ${reds?'v-red':(alerts?'v-amber':'')}">${alerts}</div><div class="stat-sub">${reds?reds+' red flag'+(reds!==1?'s':''):'need attention'}</div></div>
     <div class="stat"><div class="stat-label">Master bill</div><div class="stat-val ${masters?'v-green':''}">${masters}</div><div class="stat-sub">group${masters!==1?'s':''}</div></div>
   `;
 }
@@ -189,23 +183,22 @@ function renderTable(list){
   const byDay={};
   list.forEach(g=>{(byDay[g.arr]=byDay[g.arr]||[]).push(g);});
   const days=Object.keys(byDay).sort((a,b)=>a-b);
-  tb.innerHTML=days.map(d=>`
-    ${cur==='all'?`<tr class="day-row"><td colspan="6">${fmtDate(+d)} &nbsp;·&nbsp; ${dowLabel[+d]||''}</td></tr>`:''}
-    ${byDay[d].map(g=>{
-      const rowcls=g.red?'row-red':(g.master?'row-master':(g.alert?'row-alert':''));
-      return `
-      <tr class="${rowcls}">
+  tb.innerHTML=days.map(d=>{
+    const heavy=heavyDays.includes(+d);
+    const dayHeader=cur==='all'?`<tr class="day-row${heavy?' heavy':''}"><td colspan="6">${fmtDate(+d)} &nbsp;·&nbsp; ${dowLabel[+d]||''}${heavy?' &nbsp;·&nbsp; HEAVY ARRIVAL DAY':''}</td></tr>`:'';
+    return dayHeader+byDay[d].map(g=>{
+      const rowCls=g.red?'row-red':(g.master?'row-master':(g.alert?'row-alert':''));
+      const alertCls=g.red?'note-red':'note-alert';
+      return `<tr class="${rowCls}">
         <td><div class="cell-org">${g.org}</div><div class="cell-contact">${g.contact}</div></td>
         <td class="cell-dates">${fmtDate(g.arr)} → ${fmtDate(g.dep)}</td>
         <td><div class="cell-rooms">${g.rooms}</div><div class="cell-roomtype">${g.rtype}</div></td>
         <td class="cell-rate">${g.rate}/nt</td>
         <td><span class="badge ${g.master?'b-master':'b-indi'}">${g.billing}</span></td>
-        <td><div class="notes">${g.alert?`<span class="note-tag ${g.red?'note-red':'note-alert'}">${g.alert}</span>`:''}${g.notes.map(n=>{
-          const cls=n.startsWith('RED FLAG')?' note-red':(n.startsWith('NEW')?' note-new':'');
-          return `<span class="note-tag${cls}">${n}</span>`;
-        }).join('')}</div></td>
+        <td><div class="notes">${g.alert?`<span class="note-tag ${alertCls}">${g.alert}</span>`:''}${g.notes.map(n=>`<span class="note-tag">${n}</span>`).join('')}</div></td>
       </tr>`;
-    }).join('')}`).join('');
+    }).join('');
+  }).join('');
 }
 
 function filter(d,el){
