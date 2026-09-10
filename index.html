@@ -14,7 +14,8 @@ h1{font-size:20px;font-weight:normal;color:#2c2820;letter-spacing:-.02em}
 .meta{font-family:'Courier New',monospace;font-size:10px;color:#a09080;text-align:right;line-height:1.8}
 .urgent{background:#f4d0c8;border:1px solid #b04028;border-radius:10px;padding:12px 18px;margin-bottom:18px}
 .urgent-title{font-family:'Courier New',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#8a2010;font-weight:bold;margin-bottom:5px}
-.urgent p{font-size:12px;color:#5a2010;line-height:1.5}
+.urgent p{font-size:12px;color:#5a2010;line-height:1.5;margin-bottom:6px}
+.urgent p:last-child{margin-bottom:0}
 .urgent strong{color:#8a2010}
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:22px}
 .stat{background:#e8e0d4;border:0.5px solid rgba(0,0,0,0.08);border-radius:7px;padding:11px 14px}
@@ -64,13 +65,6 @@ td{padding:9px 12px;vertical-align:middle;color:#2c2820}
 .watchlist ul{list-style:none;padding:0;margin:0}
 .watchlist li{font-size:11px;color:#5a2010;padding:3px 0;line-height:1.5}
 .watchlist li strong{color:#8a2010}
-.shuttle{margin-top:14px;background:#e8e0d4;border:0.5px solid rgba(0,0,0,0.12);border-radius:10px;padding:14px 18px}
-.shuttle-title{font-family:'Courier New',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#6a6050;margin-bottom:8px;font-weight:bold}
-.shuttle table{width:100%;font-size:11px;border-collapse:collapse}
-.shuttle td{padding:4px 8px;border-bottom:0.5px solid rgba(0,0,0,0.06);color:#3c3428}
-.shuttle td:first-child{font-family:'Courier New',monospace;font-size:10px;color:#7a7060;white-space:nowrap}
-.shuttle td:last-child{font-family:'Courier New',monospace;text-align:right;white-space:nowrap}
-.shuttle .addr{font-family:'Courier New',monospace;font-size:9px;color:#8a7f6e;margin-top:7px}
 .changelog{margin-top:14px;background:#dce6f4;border:0.5px solid #6088c0;border-radius:10px;padding:14px 18px}
 .changelog-title{font-family:'Courier New',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#1a4a80;margin-bottom:8px;font-weight:bold}
 .changelog ul{list-style:none;padding:0;margin:0}
@@ -84,13 +78,14 @@ td{padding:9px 12px;vertical-align:middle;color:#2c2820}
   <div class="header">
     <div>
       <div class="eyebrow">Sheraton Milwaukee Brookfield · Front Desk Reference</div>
-      <h1>Group Arrivals — Aug 25 – Sep 15, 2026</h1>
+      <h1>Group Arrivals — Sep 11 – Sep 23, 2026</h1>
     </div>
-    <div class="meta">Group Resumes 8/25 – 9/15<br>Departures through Sep 18<br>Confidential · Internal Use Only</div>
+    <div class="meta">Group Resumes 9/11 – 9/23<br>Departures through Sep 27<br>Confidential · Internal Use Only</div>
   </div>
   <div class="urgent">
-    <div class="urgent-title">⏱ Action required today — Aug 26</div>
-    <p><strong>WELS Lutheran Military Support (9/9–9/13): cutoff date is Aug 26.</strong> 40 rooms contracted, 20 projected, only <strong>12 picked up</strong>. The block releases today unless sales extends or reduces it. Individual pay, $94, breakfast + 2 drink tickets included, shuttle needs must be pre-scheduled.</p>
+    <div class="urgent-title">⏱ Needs an answer before tomorrow</div>
+    <p><strong>Fischer-Cacciotti Wedding arrives 9/11 — shuttle answer is still unresolved.</strong> Third packet in a row carrying the same line: no shuttle, group is on its own, but the contact "was previously told by Kaylene there was a fee." Front desk needs one agreed answer before the bride calls. Only 2 of 20 rooms picked up.</p>
+    <p><strong>Herzing University 16 (9/20–9/25): 180 rooms contracted, 10 picked up.</strong> 36 rooms blocked every night for five nights, 2 taken each night. Ten days out — the largest open gap in this packet.</p>
   </div>
   <div class="stats" id="stats"></div>
   <div class="filters" id="filter-bar"></div>
@@ -107,39 +102,30 @@ td{padding:9px 12px;vertical-align:middle;color:#2c2820}
   <div class="watchlist">
     <div class="watchlist-title">⚠ Watchlist — Operational Risks</div>
     <ul>
-      <li><strong>WELS LMSG (9/9–9/13) — cutoff is TODAY, 12 of 40 picked up.</strong> Decision needed before end of day: extend, reduce, or release. See the banner above.</li>
-      <li><strong>Fischer-Cacciotti Wedding (9/11–9/13) — shuttle expectation conflict:</strong> Gold Keys state there is <strong>NO shuttle</strong> and the group is on its own, but note that the contact "was previously told by Kaylene there was a fee." The guest has been given two different answers. Agree the wording before she calls. Only 2 of 20 rooms picked up, 16 days out. Venue is Mitchell Park Pavilion in Brookfield; no inclusions in the rate.</li>
-      <li><strong>Race weekend pickup fell across three blocks:</strong> IndyCar Officials 489 → 483, Juncos 120 → 114, Rahal Letterman Lanigan 205 → <strong>194</strong>. Roughly 23 rooms returned to inventory for tonight and tomorrow. Rahal's Thursday night alone dropped 64 → 59.</li>
-      <li><strong>Milliman shuttle detail dropped out of this packet.</strong> The cover sheet says "please see the shuttle information on the next page" but no such page is attached. The times below are carried over from the 8/18 packet — Milliman rides today and tomorrow, so confirm before quoting them to guests.</li>
-      <li><strong>ROC Fargo vs Milkmen (9/3–9/7) — 88 picked up on a 72-room block.</strong> Pre Key | No Posting, all charges to master, breakfast included. Fourth ROC Ventures block this cycle; the pattern of picking up well over contract is now consistent.</li>
-      <li><strong>SBOC Conference (9/15–9/18) — heavy concession list.</strong> James "Pat" Miller gets a comp suite upgrade at block rate for 3 nights, Bonvoy points to member #011290282, and <strong>5 Club Level upgrades that he assigns himself</strong>. Also 70% attrition, 40:1 comp, 10% F&amp;B / 15% KVL discount, waived linen fee (skirting at cost), waived bag distribution, room flips at $250 each. Brief front desk and housekeeping in advance.</li>
-      <li><strong>Harbour Investments (9/13–9/17) — Sunday night bar volume.</strong> Registration table needed Sunday 9/13 from 5–8 p.m. and heavy bar use for 50 people in the same window. Staff appropriately. Event itself is at BCC; no inclusions in the rate; see agreement for point split.</li>
-      <li><strong>Low pickup blocks well ahead of arrival:</strong> Eaton Voltage Training 12 / 30 (repeat client, may ask for more rooms, airport shuttle to be pre-scheduled) · Midwest Rep Show 1 / 10 (courtesy block, 7am setup, may set up the night before) · Align Technology 5 / 12.</li>
-      <li><strong>NutriDyn (9/11–9/13) already over contract:</strong> 28 picked up on a 20-room block, plus 2 rooms in house 9/10. Meeting is onsite in Brookfield for 90 people; no inclusions in the room rate.</li>
-      <li><strong>Lou Fusz Soccer (9/4–9/6) carries a Code of Conduct requirement</strong>, same as the St Louis DA block from Martin Sourcing earlier this month. 208 rooms contracted, 159 picked up, 7% commission.</li>
-      <li><strong>IndyCar Officials block still labelled "Indycar Milwaukee Test June"</strong> while the dates are August. Unresolved from last packet — verify before billing. 80% attrition.</li>
-      <li><strong>Still in house but rolled off this packet:</strong> Jehovah's Witnesses (through 8/31), GEHC Training (through 8/28), TTI (through 8/29), ROC Lincoln (through 8/27). Normal roll-off since they arrived before 8/25, but front desk still has them on property this week.</li>
+      <li><strong>Motorcycle Riders Foundation (9/23–9/27) — 606 rooms, the largest block in any packet this cycle.</strong> 577 picked up, so the block is essentially full. Page 2 carries two notes written straight to us: <strong>"Heavy shuttle request but group are aware to pre-schedule"</strong> and boxes will be mailed in ahead of the event. Gold Keys also state plainly that the group will use the restaurant and bar late. Peak is 194 rooms per night Fri 9/25 and Sat 9/26. Plan overnight coverage, shuttle capacity, and package storage now.</li>
+      <li><strong>Herzing University 16 — 10 of 180 picked up (5.6%).</strong> Pre-arranged transportation to and from Herzing, nursing students, breakfast included. Either the rooming list has not landed or the block is badly oversized. Needs a sales answer this week.</li>
+      <li><strong>Fischer-Cacciotti Wedding — arrives tomorrow with 2 of 20 rooms and a contradictory shuttle answer.</strong> Venue is Mitchell Park Pavilion, Brookfield. No inclusions in rate. See the banner above.</li>
+      <li><strong>Harbour Investments (9/13–9/17) — new pre-key instruction.</strong> Staff are a mix of RMTX and FCTX; <strong>all FCTX rooms are to be pre-keyed.</strong> Also unchanged from last packet: registration table Sunday 9/13, 5–8 p.m. and heavy bar use for 50 people in the same window. Pickup slipped 165 → 159, with Monday night dropping 68 → 56.</li>
+      <li><strong>WELS BHM (9/15–9/18) — pre-key contradiction.</strong> Gold Keys read "Pre Key | No CC required upon check in" but the table shows Pre-Key = N. The sister block, WELS World Missions (9/23), is correctly marked Y with the same wording. Confirm before keys are cut. Note this block also carries a $134 Suite 1 King alongside the $94 rooms.</li>
+      <li><strong>Three GE Precision courses land in nine days:</strong> Voluson (9/15, 60 rms), Vivid Tech++ (9/22, 41 rms). Both master bill, both need HCI and airport shuttles pre-scheduled, both need the special welcome letter distributed at check-in. Same contact, Tarolyn Fulkerson.</li>
+      <li><strong>Michigan Hawks Soccer splits into two separate one-night blocks</strong> — Group 1 arrives 9/18 (72 rms, 47 picked up), Group 2 arrives 9/19 (72 rms, 55 picked up). Different master accounts and quote numbers, same contact. Both carry a Code of Conduct requirement, same as the earlier Martin Sourcing blocks.</li>
+      <li><strong>Bluumlive (9/21) needs the entire event space</strong> for a large exhibit plus storage. Split billing: a courtesy block (individual pay) and a master account block, 10 rooms each. Cover sheet arrival reads 9/20 but the block is 9/21 only.</li>
+      <li><strong>Eaton Voltage Training (9/14–9/18) — still 12 of 30, four days out.</strong> Repeat client who may ask for additional rooms; airport shuttle must be pre-scheduled.</li>
+      <li><strong>Mt. Zion 75th Anniversary (9/18–9/21) — 300 peak attendees against a 35-room block.</strong> Mostly a local banquet crowd. Hotel provides one votive candle and one table number holder per table at no charge; rental waived; dual plate at $53 per person — see contract for specifics.</li>
+      <li><strong>WELS Commission on Worship (9/23–9/27) — RMTX, credit card for incidentals only.</strong> Room and tax to master; shuttle must be pre-scheduled.</li>
+      <li><strong>Zurn Elkay (9/22–9/25) — offer Bonvoy incentives</strong> (DoubleTake and Intermediary Points Offer) per Gold Keys. 10% commission per room night. Thursday night drops to 3 rooms against 15 contracted.</li>
+      <li><strong>Rolled off but still on property:</strong> WELS LMSG (9/9–9/13) and Align Technology (departing today). LMSG is the block whose cutoff passed on Aug 26 at 12 of 40 — worth confirming how it landed.</li>
     </ul>
   </div>
-  <div class="shuttle">
-    <div class="shuttle-title">▸ Milliman Shuttle Schedule — carried over from 8/18 packet, CONFIRM</div>
-    <table>
-      <tr><td>Aug 26 · Sheraton → Milliman</td><td>2 trips</td><td>8:10 AM &nbsp;·&nbsp; 8:30 AM</td></tr>
-      <tr><td>Aug 26 · Milliman → Sheraton</td><td>2 trips</td><td>4:40 PM &nbsp;·&nbsp; 5:00 PM</td></tr>
-      <tr><td>Aug 27 · Sheraton → Milliman</td><td>2 trips</td><td>8:00 AM &nbsp;·&nbsp; 8:20 AM</td></tr>
-      <tr><td>Aug 27 · Milliman → Sheraton</td><td>2 trips</td><td>11:50 AM &nbsp;·&nbsp; 12:10 PM</td></tr>
-    </table>
-    <div class="addr">Milliman Office · 17335 Golf Parkway, Suite 100, Brookfield WI 53045-1128 · This week's cover sheet omits the schedule page — times shown are from last week</div>
-  </div>
   <div class="changelog">
-    <div class="changelog-title">▸ Changed since prior packet (8/19 – 8/28)</div>
+    <div class="changelog-title">▸ Changed since prior packet (8/25 – 9/15)</div>
     <ul>
-      <li><strong>10 new groups</strong> — the view now runs into mid-September: Midwest Rep Show (9/1), ROC Fargo vs Milkmen (9/3), Lou Fusz Soccer (9/4), Align Technology (9/9), WELS LMSG (9/9), Fischer-Cacciotti Wedding (9/11), NutriDyn (9/11), Harbour Investments (9/13), Eaton Voltage Training (9/14), SBOC Conference (9/15).</li>
-      <li><strong>Pickup down on the racing cluster:</strong> IndyCar Officials 489 → 483 · Juncos 120 → 114 · Rahal 205 → 194. Nightly detail shifted too — IndyCar's Thursday fell 111 → 95 while Friday and Saturday each gained 3.</li>
-      <li><strong>Milliman shuttle timetable removed from the cover sheet</strong>, replaced by a pointer to a page that isn't in the packet. Times retained above from last week.</li>
-      <li><strong>Unchanged:</strong> Milliman (56 / 70), Andretti (218 / 215), GE Vivid Tech (54 / 37), Dale Coyne (75 / 75).</li>
-      <li><strong>Rolled off (arrived before 8/25):</strong> Wilson Center, three New Act Travel blocks, ROC Cleburne, St Louis DA, ROC Lincoln, Jehovah's Witnesses, GEHC Training, TTI, WELS Home Mission. Four of these are still on property — see watchlist.</li>
-      <li><strong>Open from last packet, no update in this one:</strong> the "Indycar Milwaukee Test June" block name and the Juncos block-reduction date reading 11/15/2025. Juncos is still 114 picked up on a 70-room block.</li>
+      <li><strong>13 new groups</strong> — the view now runs to the end of September: GE Voluson (9/15), WELS BHM (9/15), Michigan Hawks Group 1 (9/18), Mt. Zion 75th (9/18), Michigan Hawks Group 2 (9/19), Bluumlive (9/21), Herzing University 16 (9/20), Cross Check Compliance (9/22), GE Vivid Tech++ (9/22), Zurn Elkay (9/22), Motorcycle Riders Foundation (9/23), WELS Commission on Worship (9/23), WELS World Missions (9/23).</li>
+      <li><strong>Harbour Investments picked up a new Gold Key:</strong> staff are a mix of RMTX and FCTX, and all FCTX are to be pre-keyed. Pickup 165 → 159.</li>
+      <li><strong>SBOC Conference pickup 88 → 97</strong>, now close to the 108-room block. Note the F&amp;B and reception schedule that appeared last packet (Tue reception, hosted lunches Wed/Thu, hosted dinner Thu) is <strong>not on this version of the cover sheet</strong> — the concession list survived but the meal plan dropped off. Verify with catering.</li>
+      <li><strong>NutriDyn sales manager changed</strong> from Martelle Shaw to Kaylene Falkowski. Room counts unchanged at 28 picked up on a 20-room block.</li>
+      <li><strong>Unchanged:</strong> Fischer-Cacciotti (2 / 20), Eaton (12 / 30), NutriDyn (28 / 20).</li>
+      <li><strong>Rolled off (arrived before 9/11):</strong> Milliman, GE Vivid Aug, IndyCar Officials, Andretti, Rahal, Juncos, Dale Coyne, Midwest Rep Show, ROC Fargo, Lou Fusz Soccer, Align Technology, WELS LMSG. The last two are still on property — see watchlist.</li>
     </ul>
   </div>
   <div class="footer">
@@ -149,55 +135,52 @@ td{padding:9px 12px;vertical-align:middle;color:#2c2820}
 </div>
 <script>
 const dowLabel={
-  825:'Tue Aug 25',826:'Wed Aug 26',827:'Thu Aug 27',828:'Fri Aug 28',829:'Sat Aug 29',
-  830:'Sun Aug 30',831:'Mon Aug 31',
-  901:'Tue Sep 1',902:'Wed Sep 2',903:'Thu Sep 3',904:'Fri Sep 4',905:'Sat Sep 5',
-  906:'Sun Sep 6',907:'Mon Sep 7',909:'Wed Sep 9',910:'Thu Sep 10',911:'Fri Sep 11',
-  912:'Sat Sep 12',913:'Sun Sep 13',914:'Mon Sep 14',915:'Tue Sep 15',916:'Wed Sep 16',
-  917:'Thu Sep 17',918:'Fri Sep 18'
+  911:'Fri Sep 11',912:'Sat Sep 12',913:'Sun Sep 13',914:'Mon Sep 14',915:'Tue Sep 15',
+  916:'Wed Sep 16',917:'Thu Sep 17',918:'Fri Sep 18',919:'Sat Sep 19',920:'Sun Sep 20',
+  921:'Mon Sep 21',922:'Tue Sep 22',923:'Wed Sep 23',924:'Thu Sep 24',925:'Fri Sep 25',
+  926:'Sat Sep 26',927:'Sun Sep 27'
 };
-const monthNames={8:'Aug',9:'Sep'};
-const heavyDays=[826,827]; // 8/26: 637 rms · 8/27: 355 rms — race weekend build-up
+const monthNames={9:'Sep'};
+const heavyDays=[915,923]; // 9/15: 249 rms · 9/23: 632 rms (MRF weekend begins)
 
 const groups=[
-  // ===== AUG 25 =====
-  {org:"Milliman Inc HQ — Milliman Room Block August 2026",contact:"Andrea Foster",arr:825,dep:827,rooms:70,pickup:56,rtype:"Traditional 1 King",rate:"$174",billing:"Master Bill",chg:"changed",notes:["Room &amp; tax to master · Rooming list","Breakfast included","Transport to/from Milliman Wed &amp; Thu — client aware it is 2 trips","Cover sheet points to a shuttle page that is NOT in this packet","Quote M-W68ARYR"],alert:"MASTER BILL · Shuttle times missing from packet — confirm",master:true},
-  {org:"GE Precision HealthCare — Vivid Technology Course Aug2026",contact:"Tarolyn Fulkerson",arr:825,dep:828,rooms:37,pickup:54,rtype:"Traditional 1 King",rate:"$109",billing:"Master Bill",notes:["Room &amp; tax to master · Rooming list","In-house contact: Cynthia Edwards","Breakfast buffet incl. — club lounge is secondary option, must ask","Special WELCOME LETTER — distribute at check-in","PHONE NUMBER must be logged in Quore","HCI shuttle required · airport shuttle pre-scheduled w/ Abi","Quote M-VLT30MH"],alert:"MASTER BILL · 54 picked up vs 37 block · Shuttle req.",master:true},
-
-  // ===== AUG 26 =====
-  {org:"Sportours, LLC — IndyCar Officials 2026",contact:"Molly Green",arr:826,dep:831,rooms:422,pickup:483,rtype:"Traditional 1 King",rate:"$135",billing:"Master Bill",chg:"changed",notes:["Room &amp; tax to master · Individual reservations","Breakfast incl. + 1 comp drink ticket (domestic tap beer or well drink) — approved by David","80% attrition · 7% commission","DO NOT let any no-show fall to DNA","Block still labelled 'Indycar Milwaukee Test June' — dates are August","16 rooms in house 8/24–8/25 ahead of the block","Pickup 489 → 483","Quote M-VBS2XJ9"],alert:"422 blk / 483 pickup · LARGEST GROUP · 80% attrition",master:true,red:true},
-  {org:"Andretti Autosport Aug 2026",contact:"Tracy Moyer",arr:826,dep:831,rooms:215,pickup:218,rtype:"Trad. 2Q + Trad. 1K + Suite 1K",rate:"$135",billing:"Master Bill",notes:["Room &amp; tax to master · Rooming list","Breakfast incl. · NO commission","Block 8/26–8/30 · peak 70 rms Thu–Sat","Quote M-VJBSMYD"],alert:"MASTER BILL · 215 rms · Over contract",master:true},
-
-  // ===== AUG 27 =====
-  {org:"Sportours — Rahal Letterman Lanigan Racing (Indy Car Mile 2026)",contact:"Lina Harris",arr:827,dep:830,rooms:210,pickup:194,rtype:"Trad. 2 Queens",rate:"$154",billing:"Master Bill",chg:"changed",notes:["Room &amp; tax to master · Rooming list","Breakfast included in rate","DO NOT let any no-show fall to DNA","7% commission · Intermediary Sportours (ID 14773651)","7 rooms already in house 8/26","Pickup 205 → 194 · Thursday night 64 → 59","Quote M-VCLS64U"],alert:"MASTER BILL · 210 rms · Pickup down 11 rooms",master:true},
-  {org:"Sportours — Juncos Racing (NTT IndyCar Series Milwaukee Mile 2026)",contact:"Lina Harris",arr:827,dep:831,rooms:70,pickup:114,rtype:"Trad. 2Q + Club Level 1K",rate:"$154",billing:"Individual",chg:"changed",notes:["Individual to pay · Individual reservations","Breakfast buffet in Craft Room incl. in rate","DO NOT let any no-show fall to DNA","Block reduction right of 8 rooms 'on or before 11/15/2025' — date already past","7% commission · Intermediary Sportours (ID 14773651)","Pickup 120 → 114 · still 163% of block","Quote M-VCLS673"],alert:"114 picked up vs 70 block · Cutoff date reads 2025 — verify",master:false,red:true},
-  {org:"Sportours — Dale Coyne Racing",contact:"Tyler Sulzberger",arr:827,dep:830,rooms:75,pickup:75,rtype:"Trad. 2Dbl + Club Level 1K",rate:"$145",billing:"Master Bill",notes:["Room &amp; tax to master · Rooming list","Breakfast included in rate","DO NOT let any no-show fall to DNA","7% commission · Intermediary Sportours (ID 14773651)","Block exactly filled: 25 rms × 3 nights","Quote M-VJZBX0M"],alert:"MASTER BILL · Race weekend",master:true},
-
-  // ===== SEP 1 =====
-  {org:"Preferred Lines Marketing — Midwest Rep Show September 2026",contact:"Paula Coomer",arr:901,dep:902,rooms:10,pickup:1,rtype:"Traditional 1 King",rate:"$109",billing:"Individual",chg:"new",notes:["Individual to pay · Individual reservations","COURTESY room block","Set up at 7am — set up the night before if space is available","Sales mgr: Martelle Shaw","Quote M-VSEWJUM"],alert:"1 of 10 picked up · 7am setup, may need room night before",master:false},
-
-  // ===== SEP 3 =====
-  {org:"ROC Ventures — Fargo vs Milkmen September 2026",contact:"Andrew Carr",arr:903,dep:907,rooms:72,pickup:88,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$79",billing:"Master Bill",chg:"new",notes:["All charges to master · Rooming list","Breakfast included","Pre Key | No Posting · Pre-Key: Y","4 nights, 18 rms/night contracted · 22 picked up each night","Quote M-W0LTF4H"],alert:"MASTER BILL · Pre-key · 88 picked up vs 72 block",master:true},
-
-  // ===== SEP 4 =====
-  {org:"Martin Sourcing — Lou Fusz Soccer September 2026",contact:"Rob Martin",arr:904,dep:906,rooms:208,pickup:159,rtype:"Trad. 2 Doubles",rate:"$119",billing:"Individual",chg:"new",notes:["Individual to pay · Individual reservations","Breakfast included","CODE OF CONDUCT applies","7% commission","Intermediary: Martin Sourcing and Logistics","Quote M-WOFJTWB"],alert:"208 rms · Code of Conduct — same requirement as St Louis DA",master:false},
-
-  // ===== SEP 9 =====
-  {org:"WELS Lutheran Military Support Group (LMSG) Sept2026",contact:"Pam Johnson",arr:909,dep:913,rooms:40,pickup:12,rtype:"Traditional 1 King",rate:"$94",billing:"Individual",chg:"new",notes:["Individual to pay · Individual reservations","Breakfast &amp; two drink tickets included in rate","No hospitality space","Shuttle needs must be pre-scheduled","Sales mgr: Nicole Slemin","Contracted 40 · Projected 20 · Picked up 12","Quote M-WGNC9J9"],alert:"CUTOFF DATE AUG 26 — TODAY · Only 12 of 40 picked up",master:false,red:true},
-  {org:"MSPSW Small Business — Align Technology Meeting Sep2026",contact:"Michael Terres",arr:909,dep:910,rooms:12,pickup:5,rtype:"Traditional 1 King",rate:"$149",billing:"Individual",chg:"new",notes:["Individual to pay · Individual reservations","One-day training — rental waived","Classroom setup, 2 per 6' table","$350 F&amp;B minimum","Coffee, hot tea, soft drinks &amp; bottled water on consumption","In-house: Melinda Massey","Quote M-WR11A1R"],alert:"One-day meeting · Classroom set 2 per table",master:false},
-
   // ===== SEP 11 =====
-  {org:"NutriDyn Conference SEP2026",contact:"Sarah Cady",arr:911,dep:913,rooms:20,pickup:28,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$130",billing:"Individual",chg:"new",notes:["Individual to pay · Individual reservations","Meeting onsite in Brookfield — 90 people","NO inclusions in the room rate","2 rooms already in house 9/10","Sales mgr: Martelle Shaw","Quote M-VNCCUGT"],alert:"28 picked up vs 20 block · 90-person meeting onsite",master:false},
-  {org:"MKESI — Fischer-Cacciotti Wedding (Rooms Only SEP'26)",contact:"Sierra Fischer",arr:911,dep:913,rooms:20,pickup:2,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$129",billing:"Individual",chg:"new",notes:["Individual to pay · Individual reservations","Venue: Mitchell Park Pavilion, Brookfield","NO shuttle — group is on its own","Contact was previously told by Kaylene there WAS a fee","NO inclusions in rate","Sales mgr: Kaylene Falkowski","Quote M-WEGF79J"],alert:"Shuttle answer conflicts — guest given two versions · 2 of 20 picked up",master:false,red:true},
+  {org:"MKESI — Fischer-Cacciotti Wedding (Rooms Only SEP'26)",contact:"Sierra Fischer",arr:911,dep:913,rooms:20,pickup:2,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$129",billing:"Individual",notes:["Individual to pay · Individual reservations","Venue: Mitchell Park Pavilion, Brookfield","NO shuttle — group is on its own","Contact was previously told by Kaylene there WAS a fee","NO inclusions in rate","Unresolved for a third packet","Quote M-WEGF79J"],alert:"ARRIVES TOMORROW · Shuttle answer still contradictory · 2 of 20",master:false,red:true},
+  {org:"NutriDyn Conference SEP2026",contact:"Sarah Cady",arr:911,dep:913,rooms:20,pickup:28,rtype:"Trad. 1K + Trad. 2Dbl",rate:"$130",billing:"Individual",chg:"changed",notes:["Individual to pay · Individual reservations","Meeting onsite in Brookfield — 90 people","NO inclusions in the room rate","2 rooms already in house 9/10","Sales mgr changed: Martelle Shaw → Kaylene Falkowski","Quote M-VNCCUGT"],alert:"28 picked up vs 20 block · 90-person meeting onsite",master:false},
 
   // ===== SEP 13 =====
-  {org:"Harbour Investments Group — Rooms Sep 2026",contact:"Erin Stiteley",arr:913,dep:917,rooms:185,pickup:165,rtype:"Trad. 1K + Trad. 2Dbl + Dlx 1K + Club 1K",rate:"$132",billing:"Individual",chg:"new",notes:["Individual to pay · Individual reservations","Group's event at BCC","Registration table needed Sunday 9/13, 5–8 p.m.","HEAVY BAR USE: 50 people, Sun 9/13, 5–8 p.m. — staff appropriately","See agreement for point split · NO inclusions in rate","In-house: Jonathan Jennings","Quote M-UPQFO5X"],alert:"185 rms · Heavy bar 5–8pm Sunday · Registration table same window",master:false},
+  {org:"Harbour Investments Group — Rooms Sep 2026",contact:"Erin Stiteley",arr:913,dep:917,rooms:185,pickup:159,rtype:"Trad. 1K + Trad. 2Dbl + Dlx 1K + Club 1K",rate:"$132",billing:"Individual",chg:"changed",notes:["Individual to pay · Individual reservations","Group's event at BCC","Staff are a mix of RMTX and FCTX — PRE KEY ALL FCTX","Registration table needed Sunday 9/13, 5–8 p.m.","HEAVY BAR USE: 50 people, Sun 9/13, 5–8 p.m. — staff appropriately","See agreement for point split · NO inclusions in rate","Pickup 165 → 159 · Monday night 68 → 56","Quote M-UPQFO5X"],alert:"NEW: Pre-key all FCTX staff · Heavy bar 5–8pm Sunday",master:false},
 
   // ===== SEP 14 =====
-  {org:"Eaton Corporation — Eaton Voltage Training Block September 2026",contact:"John Thierfelder",arr:914,dep:918,rooms:30,pickup:12,rtype:"Traditional 1 King",rate:"$124",billing:"Individual",chg:"new",notes:["Individual to pay · Rooming list / IPO","REPEAT CLIENT — may ask for additional rooms","Airport shuttle needed — must be pre-scheduled","In-house: Jonathan Jennings","Quote M-W1TMQEP"],alert:"12 of 30 picked up · Repeat client may add rooms",master:false},
+  {org:"Eaton Corporation — Eaton Voltage Training Block September 2026",contact:"John Thierfelder",arr:914,dep:918,rooms:30,pickup:12,rtype:"Traditional 1 King",rate:"$124",billing:"Individual",notes:["Individual to pay · Rooming list / IPO","REPEAT CLIENT — may ask for additional rooms","Airport shuttle needed — must be pre-scheduled","In-house: Jonathan Jennings","Quote M-W1TMQEP"],alert:"12 of 30 picked up · 4 days out",master:false},
 
   // ===== SEP 15 =====
-  {org:"Small Step Solutions — 6th Annual SBOC Conference SEPT 2026",contact:'James "Pat" Miller',arr:915,dep:918,rooms:108,pickup:88,rtype:"Trad. 2Q + Trad. 1K",rate:"$112",billing:"Individual",chg:"new",notes:["Individual to pay · Individual reservations","Tue reception — cash bar + 1 hosted drink ticket · hosted lunch Wed &amp; Thu · hosted dinner Thu","On own for breakfasts and Wed dinner — Wed reception may be off-property","Pat Miller: comp suite upgrade at block rate, 3 nights","Bonvoy points to member #011290282","5 Club Level upgrades at block rate — rooms assigned by Pat Miller","70% attrition · 40:1 comp","10% F&amp;B discount · 15% KVL discount","Waived linen fee — skirting at cost · waived bag distribution fee","Room flips $250 each","Quote M-VDPX53T"],alert:"Heavy concession list · 5 club upgrades assigned by group contact",master:false},
+  {org:"Small Step Solutions — 6th Annual SBOC Conference SEPT 2026",contact:'James "Pat" Miller',arr:915,dep:918,rooms:108,pickup:97,rtype:"Trad. 2Q + Trad. 1K",rate:"$112",billing:"Individual",chg:"changed",notes:["Individual to pay · Individual reservations","Pat Miller: comp suite upgrade at block rate, 3 nights","Bonvoy points to member #011290282","5 Club Level upgrades at block rate — rooms assigned by Pat Miller","70% attrition · 40:1 comp","10% F&amp;B discount · 15% KVL discount","Waived linen fee — skirting at cost · waived bag distribution fee","Room flips $250 each","F&amp;B / reception schedule from last packet is missing on this sheet","Pickup 88 → 97","Quote M-VDPX53T"],alert:"Heavy concessions · Meal plan dropped off cover sheet — verify",master:false},
+  {org:"WELS BHM Sept2026",contact:"Jill Doering",arr:915,dep:918,rooms:81,pickup:83,rtype:"Dlx 1K + Trad. 2Q + Suite 1K + Trad. 1K",rate:"$94–$134",billing:"Master Bill",chg:"new",notes:["Room &amp; tax to master · Rooming list","Breakfast buffet and two drink tickets included in rate","Shuttle needed — must be pre-scheduled","Gold Keys say Pre Key | No CC at check in — table says Pre-Key N","Suite 1 King priced at $134 · all other types $94","Sales mgr: Nicole Slemin","Quote M-WS2VLSM"],alert:"MASTER BILL · Pre-key contradiction — confirm before cutting keys",master:true},
+  {org:"GE Precision HealthCare — Voluson Technology Course Sept2026",contact:"Tarolyn Fulkerson",arr:915,dep:918,rooms:60,pickup:55,rtype:"Club Level 1 King",rate:"$99",billing:"Master Bill",chg:"new",notes:["Room &amp; tax to master · Rooming list","In-house contact: Cynthia Edwards","Breakfast buffet or club lounge included in rate","Special WELCOME LETTER — Abi to provide","HCI shuttle required — pre-scheduled","Airport shuttle needed — pre-scheduled","Peak attendees 25","Quote M-VLT30OF"],alert:"MASTER BILL · Two shuttles to pre-schedule · Welcome letter",master:true},
+
+  // ===== SEP 18 =====
+  {org:"Michigan Hawks Soccer Club — Group 1 Sep26",contact:"Michelle Creger",arr:918,dep:919,rooms:72,pickup:47,rtype:"Trad. 2 Doubles",rate:"$119",billing:"Individual",chg:"new",notes:["Individual to pay · Individual reservations","Breakfast included","CODE OF CONDUCT applies","One night only — Friday 9/18","In-house: James Dobbe","Quote M-WJTU10L"],alert:"72 rms in one night · Code of Conduct",master:false},
+  {org:"Mt. Zion Assembly of the Apostolic Faith Church — 75th Anniversary SEP26",contact:"Theresa Jones",arr:918,dep:921,rooms:35,pickup:23,rtype:"Trad. 2Q + Trad. 1K + Suite 1K",rate:"$109–$209",billing:"Individual",chg:"new",notes:["Individual to pay · Individual reservations","PEAK ATTENDEES 300 — mostly local, not rooms","Hotel provides 1 votive candle + 1 table number holder per table, no charge","Rental waived","Dual plate $53.00 per person — see contract for specifics","Sales mgr: Kaylene Falkowski","Quote M-VWI8241"],alert:"300 attendees vs 35-room block · Banquet-heavy",master:false},
+
+  // ===== SEP 19 =====
+  {org:"Michigan Hawks Soccer Club — Group 2 Sep26",contact:"Michelle Creger",arr:919,dep:920,rooms:72,pickup:55,rtype:"Trad. 2Dbl + Trad. 2Q",rate:"$119",billing:"Individual",chg:"new",notes:["Individual to pay · Individual reservations","Breakfast included","CODE OF CONDUCT applies","One night only — Saturday 9/19","Separate master account and quote from Group 1","Quote M-WJTWL7R"],alert:"Second Hawks block · 72 rms in one night · Code of Conduct",master:false},
+
+  // ===== SEP 20 =====
+  {org:"Herzing University 16",contact:"Angela Merrill",arr:920,dep:925,rooms:180,pickup:10,rtype:"Trad. 2Q + Trad. 1K",rate:"$99",billing:"Individual",chg:"new",notes:["Individual to pay · Individual reservations","Breakfast included","Pre-arranged transportation to and from Herzing","Nursing students","36 rms blocked each night for 5 nights — 2 taken each night","Contracted 180 · Picked up 10 (5.6%)","In-house: James Dobbe","Quote M-VO79JFE"],alert:"180 blk / 10 pickup · LARGEST GAP IN PACKET · 10 days out",master:false,red:true},
+
+  // ===== SEP 21 =====
+  {org:"Bluumlive — BluumLIVE Fall 2026 SEP 2026",contact:"Kellie Noller",arr:921,dep:922,rooms:20,pickup:16,rtype:"Traditional 1 King",rate:"$119",billing:"Mixed (Courtesy: Individual / Master Acct: Master)",chg:"new",notes:["Split block: 10 rms courtesy (individual pay) + 10 rms master account","Master account: room &amp; tax to master · rooming list","WILL NEED THE ENTIRE SPACE — large exhibit space plus storage","One night only — Monday 9/21","Cover sheet arrival reads 9/20 but block is 9/21","In-house: Melinda Massey · Event mgr: Mario Ortiz","Quote M-W76X3D4"],alert:"Split billing · Entire event space + storage required",master:true},
+
+  // ===== SEP 22 =====
+  {org:"Zurn Elkay Water Solutions — Training and Project Review Sept WI",contact:"Amy Dienes",arr:922,dep:925,rooms:70,pickup:57,rtype:"Trad. 2 Queens",rate:"$149",billing:"Master Bill",chg:"new",notes:["Room &amp; tax to master · Rooming list","Please offer Bonvoy incentives — DoubleTake &amp; Intermediary Points Offer","20% AV discount · 1/30 comp · rental waived","10% commission per room night","Thursday drops to 3 rms against 15 contracted","In-house: Melinda Massey","Quote M-WQS5PA4"],alert:"MASTER BILL · Offer Bonvoy incentives at check-in",master:true},
+  {org:"GE Precision HealthCare — Vivid Technology Course ++ Sept2026",contact:"Tarolyn Fulkerson",arr:922,dep:925,rooms:41,pickup:39,rtype:"Club Level 1 King",rate:"$109",billing:"Master Bill",chg:"new",notes:["Room &amp; tax to master · Rooming list","Club lounge access or breakfast buffet included in rate","Shuttle to HCI &amp; airport required","Special welcome letter","Sales mgr: Nicole Slemin","Quote M-VLT30VA"],alert:"MASTER BILL · Shuttle req. · Welcome letter",master:true},
+  {org:"Cross Check Compliance, LLC — Team Meeting SEP2026",contact:"Lauren Alvarado",arr:922,dep:924,rooms:30,pickup:25,rtype:"Traditional 1 King",rate:"$139",billing:"Individual",chg:"new",notes:["Individual to pay · Rooming list","Q3 special — 50% off rental fee / 20% AV discount","Complimentary iced tea break","Double planner points","In-house: Melinda Massey · Event mgr: Mario Ortiz","Quote M-WP2GS3G"],alert:null,master:false},
+
+  // ===== SEP 23 =====
+  {org:"Motorcycle Riders Foundation — Annual Meeting of the Minds (MRF)",contact:"Fredric Harrell",arr:923,dep:927,rooms:606,pickup:577,rtype:"Trad. 2Q + Trad. 1K + Dlx 1K + Club 1K + Trad. 2Dbl + Club 2Q",rate:"$129",billing:"Individual",chg:"new",notes:["Individual to pay · Individual reservations","FRONT DESK NOTE: heavy shuttle request — group aware they must pre-schedule","SHIPPING: group will mail boxes in for the event","Rental waived · NO inclusions in room rate","Group will use restaurant/bar late — heavy Jack Daniels &amp; Bud drinkers","Peak 194 rms per night Fri 9/25 and Sat 9/26","7% commission per room night · Intermediary: Meetings Made Easy (ID 29769202)","Event mgr: Brooke Steinbach","Quote M-UGISTBN"],alert:"606 rms · LARGEST BLOCK THIS CYCLE · Heavy shuttle · Late bar · Inbound freight",master:false,red:true},
+  {org:"WELS Commission on Worship Sept2026 (Rooms Only)",contact:"Laura Schulz",arr:923,dep:927,rooms:18,pickup:18,rtype:"Club Level 1 King",rate:"$94",billing:"Master Bill",chg:"new",notes:["Room &amp; tax to master · Rooming list","Breakfast buffet and two drink tickets included in rate","Shuttle needed — must be pre-scheduled","RMTX — credit card for incidentals only","Sales mgr: Nicole Slemin","Quote M-WRM9Y7X"],alert:"MASTER BILL · RMTX — CC for incidentals only",master:true},
+  {org:"WELS World Missions Sept2026",contact:"Jill Doering",arr:923,dep:925,rooms:8,pickup:8,rtype:"Trad. 2 Queens",rate:"$94",billing:"Master Bill",chg:"new",notes:["All charges to master · Rooming list","Breakfast buffet and two drink tickets included in rate","Shuttle needed — must be pre-scheduled","Pre Key | No CC required upon check in · Pre-Key: Y","Sales mgr: Nicole Slemin","Quote M-WTK55CM"],alert:"MASTER BILL · Pre-key, no CC at check-in",master:true},
 ];
 
 const arrDays=[...new Set(groups.map(g=>g.arr))].sort((a,b)=>a-b);
